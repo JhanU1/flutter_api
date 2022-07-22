@@ -48,6 +48,7 @@ class Fruit {
     };
   }
 
+  /// Become [Fruit] to JSON string.
   @override
   String toString() {
     return 'Fruit{genus: $genus, family: $family, id: $id, name: $name, nutritions: $nutritions}';

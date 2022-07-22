@@ -12,7 +12,7 @@ class ApiProvider extends GetConnect {
   ///
   /// Fruits are filtered by the [max] and [nutritions] parameters.
   /// Returns a [List] of [Fruit] objects.
-
+  /// If the API call fails, returns an empty [List].
   Future<List<Fruit>> getFruits(
       {int max = 10, String nutritions = "carbohydrates"}) async {
     final response = await get('/$nutritions?$max=4');
@@ -20,7 +20,7 @@ class ApiProvider extends GetConnect {
       final data = response.body;
       return data.map((e) => Fruit.fromJson(e)).toList();
     } else {
-      throw Exception('Failed to load fruits');
+      return [];
     }
   }
 }
