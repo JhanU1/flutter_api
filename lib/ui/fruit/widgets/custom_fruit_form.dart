@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/ui/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
 
-import '../../data/models/fruit_model.dart';
-import '../../domain/controllers/fruit_controller.dart';
-import '../../domain/controllers/user_controller.dart';
-import 'custom_buttom.dart';
-import 'custom_snackbar.dart';
+import '../../../../data/models/fruit_model.dart';
+import '../../../../domain/controllers/fruit_controller.dart';
+import '../../../../domain/controllers/user_controller.dart';
+import '../../widgets/custom_buttom.dart';
+import '../../widgets/custom_snackbar.dart';
+import '../../widgets/custom_text_field.dart';
 
 class CustomFruitForm extends StatelessWidget {
   CustomFruitForm({
@@ -38,6 +38,21 @@ class CustomFruitForm extends StatelessWidget {
           _fruitRx.value!.nutritions['calories'].toString();
       _sugarController.text = _fruitRx.value!.nutritions['sugar'].toString();
     }
+  }
+
+  updateModel() {
+    _fruitRx.value = Fruit(
+      genus: _genusController.text,
+      family: _familyController.text,
+      name: _nameController.text,
+      nutritions: {
+        'carbohydrates': double.parse(_carbohydratesController.text),
+        'protein': double.parse(_proteinController.text),
+        'fat': double.parse(_fatController.text),
+        'calories': double.parse(_caloriesController.text),
+        'sugar': double.parse(_sugarController.text),
+      },
+    );
   }
 
   handlerButtom() async {
