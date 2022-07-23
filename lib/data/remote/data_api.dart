@@ -8,6 +8,8 @@ class ApiProvider extends GetConnect {
     httpClient.baseUrl = "https://www.fruityvice.com/api/fruit";
   }
 
+  static ApiProvider get to => Get.find();
+
   /// Get some fruits from the API
   ///
   /// Fruits are filtered by the [max] and [nutritions] parameters.

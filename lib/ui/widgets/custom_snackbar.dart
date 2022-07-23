@@ -32,8 +32,10 @@ Icon getIcon(CustomSnackbarType type) {
   }
 }
 
-void getCustomSnackbar(String title, String message,
-    {CustomSnackbarType type = CustomSnackbarType.success,
+void showCustomSnackbar(
+    {required String title,
+    required String message,
+    CustomSnackbarType type = CustomSnackbarType.success,
     Duration? duration = const Duration(seconds: 3),
     bool? showProgressIndicator}) {
   Get.snackbar(

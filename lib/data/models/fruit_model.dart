@@ -1,7 +1,7 @@
 class Fruit {
   String genus;
   String family;
-  String id;
+  int? id;
   String name;
   Map<String, dynamic> nutritions;
   String? createdBy;
@@ -9,7 +9,7 @@ class Fruit {
   Fruit(
       {required this.genus,
       required this.family,
-      required this.id,
+      this.id,
       required this.name,
       required this.nutritions,
       this.createdBy});
