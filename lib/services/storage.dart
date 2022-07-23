@@ -18,4 +18,8 @@ class Storage extends GetxService {
   Future<dynamic> read(String key) async {
     return await _storage.read(key);
   }
+
+  Future<void> delete(String key) async {
+    await _storage.remove(key);
+  }
 }

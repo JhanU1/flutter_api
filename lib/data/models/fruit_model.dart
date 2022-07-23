@@ -4,13 +4,15 @@ class Fruit {
   String id;
   String name;
   Map<String, dynamic> nutritions;
+  String? createdBy;
 
   Fruit(
       {required this.genus,
       required this.family,
       required this.id,
       required this.name,
-      required this.nutritions});
+      required this.nutritions,
+      this.createdBy});
 
   /// Create a [Fruit] object from a JSON object.
   ///
@@ -20,6 +22,7 @@ class Fruit {
   /// - id: The ID of the fruit.
   /// - name: The name of the fruit.
   /// - nutritions: A map of nutritions and their values.
+  /// - createdBy: The user name of the user who created the fruit.
   factory Fruit.fromJson(Map<String, dynamic> json) {
     return Fruit(
       genus: json['genus'],
@@ -27,6 +30,7 @@ class Fruit {
       id: json['id'],
       name: json['name'],
       nutritions: json['nutritions'],
+      createdBy: json['createdBy'],
     );
   }
 
@@ -38,6 +42,7 @@ class Fruit {
   /// - id: The ID of the fruit.
   /// - name: The name of the fruit.
   /// - nutritions: A map of nutritions and their values.
+  /// - createdBy: The user name of the user who created the fruit.
   Map<String, dynamic> toJson() {
     return {
       'genus': genus,
@@ -45,12 +50,13 @@ class Fruit {
       'id': id,
       'name': name,
       'nutritions': nutritions,
+      'createdBy': createdBy,
     };
   }
 
   /// Become [Fruit] to JSON string.
   @override
   String toString() {
-    return 'Fruit{genus: $genus, family: $family, id: $id, name: $name, nutritions: $nutritions}';
+    return 'Fruit{genus: $genus, family: $family, id: $id, name: $name, nutritions: $nutritions, createdBy: $createdBy}';
   }
 }
