@@ -1,3 +1,4 @@
+import '../../data/models/fruit_model.dart';
 import '../../services/storage.dart';
 
 class StorageFruit {
@@ -27,21 +28,33 @@ class StorageFruit {
     }
   }
 
-  Future<void> create(String fruitName, Map<String, dynamic> data) async {
-    final fruit = await readByName(fruitName);
-    if (fruit != null) {
-      _fruits?.add(data);
+  Future<int> create(String fruitName, Fruit fruit) async {
+    final storedFruit = await readByName(fruitName);
+    if (storedFruit != null) {
+      final data = fruit.toJson();
+      data['id'] = _fruits?.length;
+      _fruits?.add(fruit.toJson());
       await _storage.save("fruits", _fruits);
+      return data['id']!;
     } else {
       return Future.error('Fruit already exists');
     }
   }
 
-  Future<void> update(String fruitName, Map<String, dynamic> data) async {
-    final fruit = await readByName(fruitName);
-    if (fruit != null) {
+  Future<void> update(String fruitName, Fruit fruit) async {
+    final storedFruit = await readByName(fruitName);
+    if (storedFruit != null) {
+      final data = fruit.toJson();
       for (final key in data.keys) {
-        fruit[key] = data[key] ?? fruit[key];
+        storedFruit[key] = data[key] ?? storedFruit[key];
+        if (key == "nutritions") {
+          if (data[key] != null) {
+            for (var keyNutrition in data[key]) {
+              storedFruit[key][keyNutrition] =
+                  data[key][keyNutrition] ?? storedFruit[key][keyNutrition];
+            }
+          }
+        }
       }
       await _storage.save("fruits", _fruits);
     }

@@ -35,6 +35,13 @@ class StorageUser {
     await _storage.save('userLogged', userName);
   }
 
+  /// Delete logged user from storage
+  ///
+  /// Deletes the [userName] from the storage.
+  Future<void> deleteUserLogged() async {
+    await _storage.delete('userLogged');
+  }
+
   /// Create a new user in storage
   ///
   /// Ensures that the user is not already registered

@@ -43,19 +43,18 @@ class FruitController extends GetxController {
   addFruit(
       {required genus,
       required family,
-      required id,
       required name,
       required nutritions,
-      required reatedBy}) async {
+      required createdBy}) async {
     final fruit = Fruit(
         genus: genus,
         family: family,
-        id: id,
         name: name,
         nutritions: nutritions,
         createdBy: userController.user?.userName);
 
-    await _storageFruit.create(name, fruit.toJson());
+    int id = await _storageFruit.create(name, fruit);
+    fruit.id = id;
     _fruits.add(fruit);
   }
 
@@ -64,20 +63,11 @@ class FruitController extends GetxController {
     _fruits.removeWhere((element) => element.name == name);
   }
 
-  Future<void> updateFruit(
-      {required name,
-      required genus,
-      required family,
-      required id,
-      required nutritions}) async {
-    final fruit = Fruit(
-        genus: genus,
-        family: family,
-        id: id,
-        name: name,
-        nutritions: nutritions);
+  Future<void> updateFruit({name, genus, family, nutritions}) async {
+    final fruit =
+        Fruit(genus: genus, family: family, name: name, nutritions: nutritions);
 
-    await _storageFruit.update(name, fruit.toJson());
+    await _storageFruit.update(name, fruit);
     _fruits.removeWhere((element) => element.name == name);
     _fruits.add(fruit);
   }

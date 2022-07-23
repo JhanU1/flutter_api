@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../data/models/user_model.dart';
-import '../use_case/storage_user.dart';
+import '../use_case/user_storage.dart';
 
 class UserController extends GetxController {
   late Rx<User?> _currentUser;
@@ -18,7 +18,7 @@ class UserController extends GetxController {
     description = "",
   }) async {
     try {
-      return await _storageUser.create(userName, {
+      await _storageUser.create(userName, {
         'name': name,
         'lastName': lastName,
         'userName': userName,
@@ -37,16 +37,17 @@ class UserController extends GetxController {
     required userName,
     required password,
   }) async {
-    try {
-      final user = await _storageUser.read(userName);
-      if (user['password'] == password) {
-        _currentUser.value = User.fromJson(user);
-      } else {
-        return Future.error('Password is incorrect');
-      }
-    } catch (e) {
-      return Future.error(e);
+    final user = await _storageUser.read(userName);
+    if (user['password'] == password) {
+      _currentUser.value = User.fromJson(user);
+    } else {
+      return Future.error('Password is incorrect');
     }
+  }
+
+  Future<void> logout() async {
+    await _storageUser.deleteUserLogged();
+    _currentUser.value = null;
   }
 
   Future<void> updateUser({
@@ -59,19 +60,15 @@ class UserController extends GetxController {
     description,
     createdFruits,
   }) async {
-    try {
-      return await _storageUser.update(userName, {
-        'name': name,
-        'lastName': lastName,
-        'userName': userName,
-        'password': password,
-        'email': email,
-        'urlImage': urlImage,
-        'description': description,
-        'createdFruits': createdFruits
-      });
-    } catch (e) {
-      return Future.error(e);
-    }
+    await _storageUser.update(userName, {
+      'name': name,
+      'lastName': lastName,
+      'userName': userName,
+      'password': password,
+      'email': email,
+      'urlImage': urlImage,
+      'description': description,
+      'createdFruits': createdFruits
+    });
   }
 }
