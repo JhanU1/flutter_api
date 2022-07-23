@@ -1,19 +1,84 @@
+import 'package:flutter_api/domain/use_case/fruit_storage.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 import '../../data/models/fruit_model.dart';
+import '../../data/remote/data_api.dart';
+import 'user_controller.dart';
 
 class FruitController extends GetxController {
-  GetStorage _storage = GetStorage();
-  RxList<Fruit> _fruits = <Fruit>[].obs;
+  FruitController() {
+    init();
+  }
 
-  get getFruitsList => _fruits.value;
+  final RxList<Fruit> _fruits = <Fruit>[].obs;
+  final _storageFruit = StorageFruit();
+  final _apiProvider = ApiProvider.to;
+  final UserController userController = Get.find();
 
-  addFruit(Fruit fruit) {
+  init() async {
+    final apiFruits = await _apiProvider.getFruits();
+    _fruits.value = apiFruits;
+    final storageFruits = await getFruitsByUser();
+    _fruits.addAll(storageFruits);
+  }
+
+  Future<List<Fruit>> getFruitsByUser() async {
+    try {
+      final fruits = await _storageFruit.read();
+      return fruits!
+          .where((element) =>
+              element!['createdBy'] == userController.user?.userName)
+          .map((e) => Fruit.fromJson(e!))
+          .toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
+  Future<Fruit> getFruidByFruitName(String fruitName) async {
+    final fruit = await _storageFruit.readByName(fruitName);
+    return Fruit.fromJson(fruit!);
+  }
+
+  addFruit(
+      {required genus,
+      required family,
+      required id,
+      required name,
+      required nutritions,
+      required reatedBy}) async {
+    final fruit = Fruit(
+        genus: genus,
+        family: family,
+        id: id,
+        name: name,
+        nutritions: nutritions,
+        createdBy: userController.user?.userName);
+
+    await _storageFruit.create(name, fruit.toJson());
     _fruits.add(fruit);
   }
 
-  removeFruit(Fruit fruit) {
-    _fruits.remove(fruit);
+  Future<void> deleteFruit(String name) async {
+    await _storageFruit.delete(name);
+    _fruits.removeWhere((element) => element.name == name);
+  }
+
+  Future<void> updateFruit(
+      {required name,
+      required genus,
+      required family,
+      required id,
+      required nutritions}) async {
+    final fruit = Fruit(
+        genus: genus,
+        family: family,
+        id: id,
+        name: name,
+        nutritions: nutritions);
+
+    await _storageFruit.update(name, fruit.toJson());
+    _fruits.removeWhere((element) => element.name == name);
+    _fruits.add(fruit);
   }
 }
