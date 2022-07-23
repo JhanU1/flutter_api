@@ -11,6 +11,7 @@ import '../../widgets/custom_text_field.dart';
 class CustomFruitForm extends StatelessWidget {
   CustomFruitForm({
     Key? key,
+    this.fruitRx,
   }) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   final _genusController = TextEditingController();
@@ -21,27 +22,26 @@ class CustomFruitForm extends StatelessWidget {
   final _fatController = TextEditingController();
   final _caloriesController = TextEditingController();
   final _sugarController = TextEditingController();
-  final Rx<Fruit?> _fruitRx = Rx<Fruit?>(null);
+  final Rx<Fruit>? fruitRx;
   final _controller = FruitController();
 
   onInit() {
-    if (_fruitRx.value != null) {
-      _genusController.text = _fruitRx.value!.genus;
-      _familyController.text = _fruitRx.value!.family;
-      _nameController.text = _fruitRx.value!.name;
+    if (fruitRx != null) {
+      _genusController.text = fruitRx!.value.genus;
+      _familyController.text = fruitRx!.value.family;
+      _nameController.text = fruitRx!.value.name;
       _carbohydratesController.text =
-          _fruitRx.value!.nutritions['carbohydrates'].toString();
-      _proteinController.text =
-          _fruitRx.value!.nutritions['protein'].toString();
-      _fatController.text = _fruitRx.value!.nutritions['fat'].toString();
+          fruitRx!.value.nutritions['carbohydrates'].toString();
+      _proteinController.text = fruitRx!.value.nutritions['protein'].toString();
+      _fatController.text = fruitRx!.value.nutritions['fat'].toString();
       _caloriesController.text =
-          _fruitRx.value!.nutritions['calories'].toString();
-      _sugarController.text = _fruitRx.value!.nutritions['sugar'].toString();
+          fruitRx!.value.nutritions['calories'].toString();
+      _sugarController.text = fruitRx!.value.nutritions['sugar'].toString();
     }
   }
 
   updateModel() {
-    _fruitRx.value = Fruit(
+    fruitRx!.value = Fruit(
       genus: _genusController.text,
       family: _familyController.text,
       name: _nameController.text,
@@ -56,7 +56,7 @@ class CustomFruitForm extends StatelessWidget {
   }
 
   handlerButtom() async {
-    if (_fruitRx.value == null) {
+    if (fruitRx == null) {
       await _controller.addFruit(
         genus: _genusController.text,
         family: _familyController.text,
@@ -89,6 +89,7 @@ class CustomFruitForm extends StatelessWidget {
           'sugar': double.parse(_sugarController.text),
         },
       );
+      updateModel();
     }
   }
 

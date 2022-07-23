@@ -7,7 +7,7 @@ import 'user_controller.dart';
 
 class FruitController extends GetxController {
   FruitController() {
-    init();
+    getAllFruit();
   }
 
   final RxList<Fruit> _fruits = <Fruit>[].obs;
@@ -15,11 +15,13 @@ class FruitController extends GetxController {
   final _apiProvider = ApiProvider.to;
   final UserController userController = Get.find();
 
-  init() async {
+  get fruits => _fruits;
+
+  getAllFruit() async {
     final apiFruits = await _apiProvider.getFruits();
-    _fruits.value = apiFruits;
     final storageFruits = await getFruitsByUser();
-    _fruits.addAll(storageFruits);
+    _fruits.value = storageFruits;
+    _fruits.addAll(apiFruits);
   }
 
   Future<List<Fruit>> getFruitsByUser() async {
@@ -66,9 +68,8 @@ class FruitController extends GetxController {
   Future<void> updateFruit({name, genus, family, nutritions}) async {
     final fruit =
         Fruit(genus: genus, family: family, name: name, nutritions: nutritions);
-
     await _storageFruit.update(name, fruit);
-    _fruits.removeWhere((element) => element.name == name);
-    _fruits.add(fruit);
+    final index = _fruits.indexWhere((element) => element.name == name);
+    _fruits[index] = fruit;
   }
 }
