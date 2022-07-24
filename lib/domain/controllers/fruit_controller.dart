@@ -10,23 +10,31 @@ class FruitController extends GetxController {
     getAllFruit();
   }
 
-  final RxList<Fruit> _fruits = <Fruit>[].obs;
-  final _storageFruit = StorageFruit();
+  final RxList<Fruit> fruits = <Fruit>[].obs;
+  final _storageFruit = Get.find<StorageFruit>();
   final _apiProvider = ApiProvider.to;
   final UserController userController = Get.find();
-
-  get fruits => _fruits;
+  final RxBool isLoading = RxBool(true);
 
   getAllFruit() async {
     final apiFruits = await _apiProvider.getFruits();
-    final storageFruits = await getFruitsByUser();
-    _fruits.value = storageFruits;
-    _fruits.addAll(apiFruits);
+    final storageFruits = _storageFruit.read();
+    if (storageFruits != null) {
+      storageFruits.sort(
+          (a, b) => a!["createdBy"].compareTo(userController.user?.userName));
+      fruits.value =
+          storageFruits.map((fruit) => Fruit.fromJson(fruit!)).toList();
+      fruits.addAll(apiFruits);
+    } else {
+      fruits.value = apiFruits;
+    }
+
+    isLoading.value = false;
   }
 
   Future<List<Fruit>> getFruitsByUser() async {
     try {
-      final fruits = await _storageFruit.read();
+      final fruits = _storageFruit.read();
       return fruits!
           .where((element) =>
               element!['createdBy'] == userController.user?.userName)
@@ -42,7 +50,7 @@ class FruitController extends GetxController {
     return Fruit.fromJson(fruit!);
   }
 
-  addFruit(
+  Future<void> addFruit(
       {required genus,
       required family,
       required name,
@@ -57,19 +65,24 @@ class FruitController extends GetxController {
 
     int id = await _storageFruit.create(name, fruit);
     fruit.id = id;
-    _fruits.add(fruit);
+    fruits.add(fruit);
   }
 
   Future<void> deleteFruit(String name) async {
     await _storageFruit.delete(name);
-    _fruits.removeWhere((element) => element.name == name);
+    fruits.removeWhere((element) => element.name == name);
   }
 
   Future<void> updateFruit({name, genus, family, nutritions}) async {
-    final fruit =
-        Fruit(genus: genus, family: family, name: name, nutritions: nutritions);
+    final fruit = Fruit(
+        genus: genus,
+        family: family,
+        name: name,
+        nutritions: nutritions,
+        createdBy: userController.user?.userName);
+
     await _storageFruit.update(name, fruit);
-    final index = _fruits.indexWhere((element) => element.name == name);
-    _fruits[index] = fruit;
+    final index = fruits.indexWhere((element) => element.name == name);
+    fruits[index] = fruit;
   }
 }

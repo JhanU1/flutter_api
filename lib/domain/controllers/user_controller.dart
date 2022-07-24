@@ -4,9 +4,22 @@ import '../../data/models/user_model.dart';
 import '../use_case/user_storage.dart';
 
 class UserController extends GetxController {
-  late Rx<User?> _currentUser;
-  final StorageUser _storageUser = StorageUser();
+  UserController() {
+    init();
+  }
+
+  final Rx<User?> _currentUser = Rx<User?>(null);
+  final StorageUser _storageUser = Get.find<StorageUser>();
   User? get user => _currentUser.value;
+
+  init() async {
+    try {
+      final user = await _storageUser.readUserLogged();
+      _currentUser.value = User.fromJson(user);
+    } catch (e) {
+      _currentUser.value = null;
+    }
+  }
 
   Future<void> register({
     required name,
@@ -38,8 +51,10 @@ class UserController extends GetxController {
     required password,
   }) async {
     final user = await _storageUser.read(userName);
+
     if (user['password'] == password) {
       _currentUser.value = User.fromJson(user);
+      await _storageUser.saveUserLogged(userName);
     } else {
       return Future.error('Password is incorrect');
     }
