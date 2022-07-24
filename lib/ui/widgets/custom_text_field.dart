@@ -5,7 +5,7 @@ class WidgetTextField extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final bool obscure;
-  final bool digitsOnly;
+  final bool numbersOnly;
   final Key keyText;
   final int maxLine;
   final bool active;
@@ -15,11 +15,12 @@ class WidgetTextField extends StatelessWidget {
       required this.controller,
       this.validator,
       this.obscure = false,
-      this.digitsOnly = false,
+      this.numbersOnly = false,
       this.active = true,
       this.maxLine = 1,
-      this.keyText = const Key("")})
-      : super(key: keyText);
+      this.keyText = const Key(""),
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,9 @@ class WidgetTextField extends StatelessWidget {
         key: keyText,
         maxLines: maxLine,
         obscureText: obscure,
-        keyboardType: digitsOnly ? TextInputType.number : TextInputType.text,
+        keyboardType: numbersOnly
+            ? const TextInputType.numberWithOptions(decimal: true)
+            : TextInputType.text,
         decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
           labelText: label,
