@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 
 import '../../../../domain/controllers/responsive_controller.dart';
 
-class ResponsiveViewCases1 extends GetResponsiveView<ResponsiveController> {
-  ResponsiveViewCases1({Key? key}) : super(key: key);
+class ResponsiveFruitPage extends GetResponsiveView<ResponsiveController> {
+  ResponsiveFruitPage({Key? key}) : super(key: key);
 
   @override
   Widget builder() =>

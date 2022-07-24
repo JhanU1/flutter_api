@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../../data/models/fruit_model.dart';
 import '../../../../domain/controllers/fruit_controller.dart';
+import '../../../widgets/custom_snackbar.dart';
 import '../../widgets/custom_fruit_list_tile.dart';
 import '../fruit_create.dart';
 
@@ -39,7 +40,22 @@ class FruitPageTablet extends StatelessWidget {
                             fruitController.selectedFruit.value = fruit;
                             fruitController.indexFruitPage.value = 1;
                           },
-                          onDelete: () {});
+                          onDelete: () async {
+                            try {
+                              await controller.deleteFruit(fruit.name);
+                              Get.back();
+                              showCustomSnackbar(
+                                title: 'Fruit deleted',
+                                message: 'Fruit deleted successfully',
+                              );
+                              fruitController.indexFruitPage.value = 0;
+                            } catch (e) {
+                              showCustomSnackbar(
+                                title: 'Error',
+                                message: e.toString(),
+                              );
+                            }
+                          });
                     },
                   ));
                 }
