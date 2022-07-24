@@ -26,7 +26,7 @@ class FruitPage extends StatelessWidget {
                     child: ListView.builder(
                   itemCount: controller.fruits.length,
                   itemBuilder: (context, index) {
-                    final fruit = controller.fruits[index];
+                    final fruit = controller.fruits.reversed.elementAt(index);
                     return CustomFruitListTile(
                       fruitRx: Rx<Fruit>(fruit),
                     );

@@ -19,13 +19,11 @@ class FruitController extends GetxController {
   getAllFruit() async {
     final apiFruits = await _apiProvider.getFruits();
     final storageFruits = _storageFruit.read();
-    print(storageFruits);
     if (storageFruits != null) {
       storageFruits.sort(
-          (a, b) => a!["createdBy"].compareTo(userController.user?.userName));
-      fruits.value =
-          storageFruits.map((fruit) => Fruit.fromJson(fruit!)).toList();
-      fruits.addAll(apiFruits);
+          (a, b) => b!["createdBy"].compareTo(userController.user?.userName));
+      fruits.value = apiFruits;
+      fruits.addAll(storageFruits.map((fruit) => Fruit.fromJson(fruit!)));
     } else {
       fruits.value = apiFruits;
     }
