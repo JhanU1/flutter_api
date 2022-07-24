@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import "package:get/get.dart";
 
 import '../models/fruit_model.dart';
@@ -16,11 +18,11 @@ class ApiProvider extends GetConnect {
   /// Returns a [List] of [Fruit] objects.
   /// If the API call fails, returns an empty [List].
   Future<List<Fruit>> getFruits(
-      {int max = 10, String nutritions = "carbohydrates"}) async {
-    final response = await get('/$nutritions?$max=4');
+      {int max = 100, String nutritions = "carbohydrates"}) async {
+    final response = await get('/$nutritions?max=$max');
     if (response.statusCode == 200) {
-      final data = response.body;
-      return data.map((e) => Fruit.fromJson(e)).toList();
+      final data = const JsonDecoder().convert(response.body);
+      return data.map<Fruit>((e) => Fruit.fromJson(e)).toList();
     } else {
       return [];
     }
