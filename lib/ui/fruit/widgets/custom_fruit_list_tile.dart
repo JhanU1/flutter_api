@@ -12,10 +12,16 @@ class CustomFruitListTile extends StatelessWidget {
   final Rx<Fruit> fruitRx;
   final FruitController fruitController = Get.find();
   final UserController userController = Get.find();
+  final VoidCallback? onTap;
+  final VoidCallback? onEdit;
+  final VoidCallback? onDelete;
 
   CustomFruitListTile({
     Key? key,
     required this.fruitRx,
+    this.onTap,
+    this.onEdit,
+    this.onDelete,
   }) : super(key: key);
 
   @override
@@ -34,11 +40,7 @@ class CustomFruitListTile extends StatelessWidget {
               itemBuilder: (context) {
                 return [
                   PopupMenuItem(
-                    onTap: () async {
-                      Future.delayed(const Duration(milliseconds: 500),
-                          () => Get.to(() => FruitEdit(), arguments: fruitRx));
-                      // await Get.to(() => FruitEdit(), arguments: fruitRx);
-                    },
+                    onTap: onEdit,
                     value: const Text('Edit'),
                     child: Row(
                       children: const [
@@ -57,21 +59,7 @@ class CustomFruitListTile extends StatelessWidget {
                         Text("Delete")
                       ],
                     ),
-                    onTap: () async {
-                      try {
-                        await fruitController.deleteFruit(fruitRx.value.name);
-                        Get.back();
-                        showCustomSnackbar(
-                          title: 'Fruit deleted',
-                          message: 'Fruit deleted successfully',
-                        );
-                      } catch (e) {
-                        showCustomSnackbar(
-                          title: 'Error',
-                          message: e.toString(),
-                        );
-                      }
-                    },
+                    onTap: () async {},
                   ),
                 ];
               },

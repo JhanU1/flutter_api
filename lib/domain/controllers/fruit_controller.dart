@@ -11,6 +11,10 @@ class FruitController extends GetxController {
   }
 
   final RxList<Fruit> fruits = <Fruit>[].obs;
+
+  late Rx<Fruit> selectedFruit = Rx<Fruit>(Fruit.fromJson({}));
+  final RxInt indexFruitPage = RxInt(0);
+
   final _storageFruit = Get.find<StorageFruit>();
   final _apiProvider = ApiProvider.to;
   final UserController userController = Get.find();

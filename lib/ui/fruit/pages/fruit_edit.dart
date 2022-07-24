@@ -3,10 +3,16 @@ import 'package:flutter_api/ui/fruit/widgets/custom_fruit_form.dart';
 import 'package:get/get.dart';
 
 import '../../../data/models/fruit_model.dart';
+import '../../../domain/controllers/fruit_controller.dart';
 
+// ignore: must_be_immutable
 class FruitEdit extends StatelessWidget {
-  FruitEdit({Key? key}) : super(key: key);
-  final Rx<Fruit> _fruitRx = Get.arguments;
+  FruitEdit({Key? key}) : super(key: key) {
+    fruitController = Get.find();
+    _fruitRx = fruitController.selectedFruit;
+  }
+  late FruitController fruitController;
+  late Rx<Fruit>? _fruitRx;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +34,7 @@ class FruitEdit extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  CustomFruitForm(fruitRx: _fruitRx),
+                  CustomFruitForm(fruitRx: _fruitRx!),
                 ],
               ),
             ),

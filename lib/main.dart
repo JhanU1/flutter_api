@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'data/remote/data_api.dart';
+import 'domain/controllers/responsive_controller.dart';
 import 'domain/use_case/fruit_storage.dart';
 import 'services/storage.dart';
 import 'ui/my_app.dart';
@@ -18,5 +19,6 @@ void main() async {
   Get.put(StorageUser());
   Get.put(UserController());
   Get.put(FruitController());
-  runApp(const MyApp());
+  Get.lazyPut(() => ResponsiveController());
+  runApp(MyApp());
 }
