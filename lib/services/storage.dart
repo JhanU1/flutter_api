@@ -7,7 +7,6 @@ class Storage extends GetxService {
 
   @override
   void onInit() async {
-    await GetStorage.init();
     super.onInit();
   }
 

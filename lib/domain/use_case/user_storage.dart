@@ -13,7 +13,7 @@ class StorageUser {
   /// Ensures user storage exists
   init() async {
     final users = await _storage.read('users');
-    if (!users) {
+    if (users == null) {
       await _storage.save('users', []);
     }
   }
@@ -50,7 +50,7 @@ class StorageUser {
     final users = await _storage.read("users");
     final user = users.firstWhere((user) => user['userName'] == userName,
         orElse: () => null);
-    if (!user) {
+    if (user == null) {
       users.add(data);
       await _storage.save("users", users);
     } else {
@@ -66,7 +66,7 @@ class StorageUser {
     final users = await _storage.read("users");
     final user = users.firstWhere((user) => user['userName'] == userName,
         orElse: () => null);
-    if (user) {
+    if (user != null) {
       return user;
     } else {
       return Future.error('User does not exists');
@@ -81,7 +81,7 @@ class StorageUser {
     final users = await _storage.read("users");
     final user = users.firstWhere((user) => user['userName'] == userName,
         orElse: () => null);
-    if (user) {
+    if (user != null) {
       for (final key in data.keys) {
         user[key] = data[key] ?? user[key];
       }
