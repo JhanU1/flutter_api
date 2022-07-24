@@ -5,11 +5,6 @@ class Storage extends GetxService {
   static Storage get to => Get.find();
   final GetStorage _storage = GetStorage();
 
-  @override
-  void onInit() async {
-    super.onInit();
-  }
-
   Future<void> save(String key, dynamic value) async {
     await _storage.write(key, value);
   }

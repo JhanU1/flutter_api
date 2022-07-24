@@ -12,8 +12,17 @@ class FruitController extends GetxController {
 
   final RxList<Fruit> fruits = <Fruit>[].obs;
 
-  late Rx<Fruit> selectedFruit = Rx<Fruit>(Fruit.fromJson({}));
+  /// [selectedFruit] is used for fruit responsive pages.
+  Rx<Fruit> selectedFruit = Rx<Fruit>(Fruit.fromJson({}));
+
+  /// [indexFruitPage] is used for fruit responsive pages.
   final RxInt indexFruitPage = RxInt(0);
+
+  /// [selectedFruitUser] is used for fruit user responsive pages.
+  Rx<Fruit> selectedFruitUser = Rx<Fruit>(Fruit.fromJson({}));
+
+  /// [indexFruitUserPage] is used for fruit user responsive pages.
+  final RxInt indexFruitUserPage = RxInt(0);
 
   final _storageFruit = Get.find<StorageFruit>();
   final _apiProvider = ApiProvider.to;

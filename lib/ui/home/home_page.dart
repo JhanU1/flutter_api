@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/ui/fruit/pages/fruit_page.dart';
-import 'package:flutter_api/ui/fruit/pages/fruit_user.dart';
+
+import 'package:flutter_api/ui/fruit/pages/responsive/fruits/fruit_page_responsive.dart';
 import 'package:flutter_api/ui/user/Pages/user_profile.dart';
 import 'package:get/get.dart';
 
-import '../../domain/controllers/user_controller.dart';
+import '../../../domain/controllers/user_controller.dart';
+
+import '../fruit/pages/responsive/fruit_user/fruit_page_responsive.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final UserController userController = Get.find();
   final selectedPage = 0.obs;
   final listPage = [
-    FruitPage(),
-    FruitUserPage(),
+    ResponsiveFruitPage(),
+    ResponsiveFruitUserPage(),
     UserProfile(),
   ];
   @override

@@ -20,5 +20,5 @@ void main() async {
   Get.put(UserController());
   Get.put(FruitController());
   Get.lazyPut(() => ResponsiveController());
-  runApp(MyApp());
+  runApp(const MyApp());
 }

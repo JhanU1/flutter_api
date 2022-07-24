@@ -8,9 +8,9 @@ import '../../widgets/custom_snackbar.dart';
 import '../../widgets/custom_text_field.dart';
 
 class UserForm extends StatelessWidget {
-  UserForm({Key? key, this.userRx}) : super(key: key);
+  UserForm({Key? key, this.user}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
-  final Rx<User>? userRx;
+  final User? user;
   final _controller = Get.find<UserController>();
   final _nameController = TextEditingController();
   final _lastNameController = TextEditingController();
@@ -22,31 +22,19 @@ class UserForm extends StatelessWidget {
   final _confirmPasswordController = TextEditingController();
 
   onInit() {
-    if (userRx != null) {
-      _nameController.text = userRx!.value.name;
-      _lastNameController.text = userRx!.value.lastName;
-      _userNameController.text = userRx!.value.userName;
-      _passwordController.text = userRx!.value.password;
-      _emailController.text = userRx!.value.email;
-      _urlImageController.text = userRx!.value.urlImage;
-      _descriptionController.text = userRx!.value.description;
+    if (user != null) {
+      _nameController.text = user!.name;
+      _lastNameController.text = user!.lastName;
+      _userNameController.text = user!.userName;
+      _passwordController.text = user!.password;
+      _emailController.text = user!.email;
+      _urlImageController.text = user!.urlImage;
+      _descriptionController.text = user!.description;
     }
   }
 
-  updateModel() {
-    userRx!.value = User(
-      name: _nameController.text,
-      lastName: _lastNameController.text,
-      userName: _userNameController.text,
-      password: _passwordController.text,
-      email: _emailController.text,
-      urlImage: _urlImageController.text,
-      description: _descriptionController.text,
-    );
-  }
-
   handlerButton() async {
-    if (userRx == null) {
+    if (user == null) {
       await _controller.register(
         name: _nameController.text,
         lastName: _lastNameController.text,
@@ -71,7 +59,6 @@ class UserForm extends StatelessWidget {
         urlImage: _urlImageController.text,
         description: _descriptionController.text,
       );
-      updateModel();
       Get.back();
       showCustomSnackbar(
         title: 'User updated',
@@ -101,6 +88,7 @@ class UserForm extends StatelessWidget {
               return null;
             }),
         WidgetTextField(
+            active: user != null,
             label: "User Name",
             controller: _userNameController,
             validator: (value) {

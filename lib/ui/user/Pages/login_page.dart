@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/ui/home/home_page.dart';
+
 import 'package:flutter_api/ui/widgets/custom_buttom.dart';
 import 'package:flutter_api/ui/widgets/custom_text_field.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/controllers/user_controller.dart';
+import '../../home/home_page.dart';
 import '../../widgets/custom_snackbar.dart';
 
 class LoginPage extends StatelessWidget {

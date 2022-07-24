@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../domain/controllers/user_controller.dart';
 import '../widgets/custom_user_form.dart';
 
 class UserEditPage extends StatelessWidget {
-  const UserEditPage({Key? key}) : super(key: key);
+  UserEditPage({Key? key}) : super(key: key);
+  final _controller = Get.find<UserController>();
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class UserEditPage extends StatelessWidget {
           child: Column(
             children: [
               const Text("Edit User Page"),
-              UserForm(),
+              UserForm(user: _controller.user),
             ],
           ),
         ),

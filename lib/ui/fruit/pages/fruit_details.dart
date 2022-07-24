@@ -11,21 +11,21 @@ class FruitDetails extends StatelessWidget {
     fruit = fruitController.selectedFruit.value;
   }
   late FruitController fruitController;
-  late Fruit? fruit;
+  late Fruit fruit;
   @override
   Widget build(BuildContext context) {
-    if (fruit != null) {
+    if (fruit.name.isNotEmpty) {
       return Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text("Name"),
-              Text(fruit!.name),
+              Text(fruit.name),
               const Text("Genus"),
-              Text(fruit!.genus),
+              Text(fruit.genus),
               const Text("Family"),
-              Text(fruit!.family),
+              Text(fruit.family),
               const Divider(),
               const Text("Nutritions"),
               Container(
@@ -33,15 +33,15 @@ class FruitDetails extends StatelessWidget {
                   child: Column(
                     children: [
                       const Text('Carbohydrates'),
-                      Text(fruit!.nutritions["carbohydrates"].toString()),
+                      Text(fruit.nutritions["carbohydrates"].toString()),
                       const Text('Protein'),
-                      Text(fruit!.nutritions["protein"].toString()),
+                      Text(fruit.nutritions["protein"].toString()),
                       const Text('Fat'),
-                      Text(fruit!.nutritions["fat"].toString()),
+                      Text(fruit.nutritions["fat"].toString()),
                       const Text('Calories'),
-                      Text(fruit!.nutritions["calories"].toString()),
+                      Text(fruit.nutritions["calories"].toString()),
                       const Text('Sugar'),
-                      Text(fruit!.nutritions["sugar"].toString()),
+                      Text(fruit.nutritions["sugar"].toString()),
                     ],
                   )),
             ],

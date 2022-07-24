@@ -8,16 +8,16 @@ class UserController extends GetxController {
     init();
   }
 
-  final Rx<User?> _currentUser = Rx<User?>(null);
+  final Rx<User?> currentUser = Rx<User?>(null);
   final StorageUser _storageUser = Get.find<StorageUser>();
-  User? get user => _currentUser.value;
+  User? get user => currentUser.value;
 
   init() async {
     try {
       final user = await _storageUser.readUserLogged();
-      _currentUser.value = User.fromJson(user);
+      currentUser.value = User.fromJson(user);
     } catch (e) {
-      _currentUser.value = null;
+      currentUser.value = null;
     }
   }
 
@@ -53,7 +53,7 @@ class UserController extends GetxController {
     final user = await _storageUser.read(userName);
 
     if (user['password'] == password) {
-      _currentUser.value = User.fromJson(user);
+      currentUser.value = User.fromJson(user);
       await _storageUser.saveUserLogged(userName);
     } else {
       return Future.error('Password is incorrect');
@@ -62,7 +62,7 @@ class UserController extends GetxController {
 
   Future<void> logout() async {
     await _storageUser.deleteUserLogged();
-    _currentUser.value = null;
+    currentUser.value = null;
   }
 
   Future<void> updateUser({
@@ -85,5 +85,15 @@ class UserController extends GetxController {
       'description': description,
       'createdFruits': createdFruits
     });
+    currentUser.value = User(
+      name: name,
+      lastName: lastName,
+      userName: userName,
+      password: password,
+      email: email,
+      urlImage: urlImage,
+      description: description,
+      createdFruits: createdFruits,
+    );
   }
 }

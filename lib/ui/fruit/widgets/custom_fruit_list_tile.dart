@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api/domain/controllers/fruit_controller.dart';
 import 'package:flutter_api/ui/fruit/pages/fruit_details.dart';
-import 'package:flutter_api/ui/fruit/pages/fruit_edit.dart';
+
 import 'package:get/get.dart';
 
 import '../../../../data/models/fruit_model.dart';
 import '../../../domain/controllers/user_controller.dart';
-import '../../widgets/custom_snackbar.dart';
 
 class CustomFruitListTile extends StatelessWidget {
   final Rx<Fruit> fruitRx;

@@ -24,14 +24,25 @@ class Fruit {
   /// - nutritions: A map of nutritions and their values.
   /// - createdBy: The user name of the user who created the fruit.
   factory Fruit.fromJson(Map<String, dynamic> json) {
-    return Fruit(
-      genus: json['genus'],
-      family: json['family'],
-      id: json['id'],
-      name: json['name'],
-      nutritions: json['nutritions'],
-      createdBy: json['createdBy'],
-    );
+    try {
+      return Fruit(
+        genus: json['genus'],
+        family: json['family'],
+        id: json['id'],
+        name: json['name'],
+        nutritions: json['nutritions'],
+        createdBy: json['createdBy'],
+      );
+    } catch (e) {
+      return Fruit(
+        genus: '',
+        family: '',
+        id: null,
+        name: '',
+        nutritions: {},
+        createdBy: '',
+      );
+    }
   }
 
   /// Become [Fruit] to JSON object.
