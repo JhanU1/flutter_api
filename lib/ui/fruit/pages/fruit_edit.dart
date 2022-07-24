@@ -4,16 +4,37 @@ import 'package:get/get.dart';
 
 import '../../../data/models/fruit_model.dart';
 
-class FruitCreate extends StatelessWidget {
-  FruitCreate({Key? key}) : super(key: key);
+class FruitEdit extends StatelessWidget {
+  FruitEdit({Key? key}) : super(key: key);
   final Rx<Fruit> _fruitRx = Get.arguments;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text("Fruit Edit"),
-        CustomFruitForm(fruitRx: _fruitRx),
-      ],
+    return Scaffold(
+      body: Container(
+        margin: const EdgeInsets.only(top: 70, left: 20, right: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 100,
+              child: Center(
+                child: Text(
+                  "Edit fruit",
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView(
+                children: [
+                  CustomFruitForm(fruitRx: _fruitRx),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

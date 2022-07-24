@@ -19,6 +19,7 @@ class FruitController extends GetxController {
   getAllFruit() async {
     final apiFruits = await _apiProvider.getFruits();
     final storageFruits = _storageFruit.read();
+    print(storageFruits);
     if (storageFruits != null) {
       storageFruits.sort(
           (a, b) => a!["createdBy"].compareTo(userController.user?.userName));

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../data/models/fruit_model.dart';
 import '../../../domain/controllers/fruit_controller.dart';
 import '../widgets/custom_fruit_list_tile.dart';
+import 'fruit_create.dart';
 
 class FruitPage extends StatelessWidget {
   FruitPage({Key? key}) : super(key: key);
@@ -15,13 +16,32 @@ class FruitPage extends StatelessWidget {
       body: Column(
         children: [
           const Text("Fruit Page"),
-          Expanded(child: ListView.builder(
-            itemBuilder: ((context, index) {
-              return CustomFruitListTile(
-                  fruitRx: Rx<Fruit>(_controller.fruits[index]));
-            }),
-          ))
+          GetX<FruitController>(
+            builder: (controller) {
+              if (controller.isLoading.value) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                print("Actualizando");
+                return Expanded(
+                    child: ListView.builder(
+                  itemCount: controller.fruits.length,
+                  itemBuilder: (context, index) {
+                    final fruit = controller.fruits[index];
+                    return CustomFruitListTile(
+                      fruitRx: Rx<Fruit>(fruit),
+                    );
+                  },
+                ));
+              }
+            },
+          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => const FruitCreate());
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }

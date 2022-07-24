@@ -6,11 +6,32 @@ class FruitCreate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text("Fruit Create"),
-        CustomFruitForm(),
-      ],
+    return Scaffold(
+      body: Container(
+        margin: const EdgeInsets.only(top: 70, left: 20, right: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 100,
+              child: Center(
+                child: Text(
+                  "Create new fruit",
+                  style: TextStyle(fontSize: 30),
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView(
+                children: [
+                  CustomFruitForm(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

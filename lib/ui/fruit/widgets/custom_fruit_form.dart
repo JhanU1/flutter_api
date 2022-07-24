@@ -23,7 +23,7 @@ class CustomFruitForm extends StatelessWidget {
   final _caloriesController = TextEditingController();
   final _sugarController = TextEditingController();
   final Rx<Fruit>? fruitRx;
-  final _controller = FruitController();
+  final _controller = Get.find<FruitController>();
 
   onInit() {
     if (fruitRx != null) {
@@ -90,6 +90,12 @@ class CustomFruitForm extends StatelessWidget {
         },
       );
       updateModel();
+      Get.back();
+      showCustomSnackbar(
+        title: 'Fruit updated',
+        message: 'Fruit updated successfully',
+        type: CustomSnackbarType.success,
+      );
     }
   }
 
@@ -134,55 +140,70 @@ class CustomFruitForm extends StatelessWidget {
         WidgetTextField(
             label: "Carbohydrates",
             controller: _carbohydratesController,
-            digitsOnly: true,
+            numbersOnly: true,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter a value';
+              }
+              if (!GetUtils.isNum(value)) {
+                return 'Please enter a valid number';
               }
               return null;
             }),
         WidgetTextField(
             label: "Protein",
             controller: _proteinController,
-            digitsOnly: true,
+            numbersOnly: true,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter a value';
+              }
+              if (!GetUtils.isNum(value)) {
+                return 'Please enter a valid number';
               }
               return null;
             }),
         WidgetTextField(
             label: "Fat",
             controller: _fatController,
-            digitsOnly: true,
+            numbersOnly: true,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter a value';
+              }
+              if (!GetUtils.isNum(value)) {
+                return 'Please enter a valid number';
               }
               return null;
             }),
         WidgetTextField(
             label: "Calories",
             controller: _caloriesController,
-            digitsOnly: true,
+            numbersOnly: true,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter a value';
+              }
+              if (!GetUtils.isNum(value)) {
+                return 'Please enter a valid number';
               }
               return null;
             }),
         WidgetTextField(
             label: "Sugar",
             controller: _sugarController,
-            digitsOnly: true,
+            numbersOnly: true,
             validator: (value) {
               if (value!.isEmpty) {
                 return 'Please enter a value';
               }
+              if (!GetUtils.isNum(value)) {
+                return 'Please enter a valid number';
+              }
               return null;
             }),
         WidgetButton(
-            text: "",
+            text: "Save",
             onPressed: () async {
               final form = _formKey.currentState;
               form!.save();
