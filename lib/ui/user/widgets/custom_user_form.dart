@@ -19,6 +19,7 @@ class UserForm extends StatelessWidget {
   final _emailController = TextEditingController();
   final _urlImageController = TextEditingController();
   final _descriptionController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   onInit() {
     if (userRx != null) {
@@ -109,8 +110,22 @@ class UserForm extends StatelessWidget {
         WidgetTextField(
             label: "Password",
             controller: _passwordController,
+            obscure: true,
             validator: (value) {
               if (value!.isEmpty) return "Password is required";
+              return null;
+            }),
+        WidgetTextField(
+            label: "Confirm Password",
+            controller: _confirmPasswordController,
+            obscure: true,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return "Confirm Password is required";
+              }
+              if (value != _passwordController.text) {
+                return "Password does not match";
+              }
               return null;
             }),
         WidgetTextField(
