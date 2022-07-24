@@ -7,8 +7,7 @@ import '../widgets/custom_fruit_list_tile.dart';
 import 'fruit_create.dart';
 
 class FruitPage extends StatelessWidget {
-  FruitPage({Key? key}) : super(key: key);
-  final FruitController _controller = Get.find();
+  const FruitPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,6 @@ class FruitPage extends StatelessWidget {
               if (controller.isLoading.value) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                print("Actualizando");
                 return Expanded(
                     child: ListView.builder(
                   itemCount: controller.fruits.length,
@@ -38,6 +36,7 @@ class FruitPage extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: "createFruit",
         onPressed: () {
           Get.to(() => const FruitCreate());
         },
