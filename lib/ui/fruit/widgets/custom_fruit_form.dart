@@ -57,6 +57,17 @@ class CustomFruitForm extends StatelessWidget {
     );
   }
 
+  cleanTextControllers() {
+    _genusController.text = '';
+    _familyController.text = '';
+    _nameController.text = '';
+    _carbohydratesController.text = '';
+    _proteinController.text = '';
+    _fatController.text = '';
+    _caloriesController.text = '';
+    _sugarController.text = '';
+  }
+
   handlerButtom() async {
     if (fruitRx == null) {
       await _controller.addFruit(
@@ -78,6 +89,7 @@ class CustomFruitForm extends StatelessWidget {
         message: 'Fruit added successfully',
         type: CustomSnackbarType.success,
       );
+      cleanTextControllers();
     } else {
       await _controller.updateFruit(
         genus: _genusController.text,
@@ -120,6 +132,7 @@ class CustomFruitForm extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         WidgetTextField(
+          active: fruitRx == null,
           label: "Name",
           controller: _nameController,
           validator: (value) {

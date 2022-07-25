@@ -5,7 +5,7 @@ class User {
   String password;
   String email;
   String urlImage;
-  int createdFruits;
+
   String description;
 
   User({
@@ -15,7 +15,6 @@ class User {
     required this.password,
     required this.email,
     this.urlImage = "",
-    this.createdFruits = 0,
     this.description = "",
   });
 
@@ -28,7 +27,6 @@ class User {
   /// - password: The password of the user.
   /// - email: The email of the user.
   /// - urlImage: The URL of the user's image.
-  /// - createdFruits: The number of fruits created by the user.
   /// - description: The description of the user.
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
@@ -38,7 +36,6 @@ class User {
       password: json['password'],
       email: json['email'],
       urlImage: json['urlImage'],
-      createdFruits: json['createdFruits'],
       description: json['description'],
     );
   }
@@ -52,7 +49,6 @@ class User {
   /// - password: The password of the user.
   /// - email: The email of the user.
   /// - urlImage: The URL of the user's image.
-  /// - createdFruits: The number of fruits created by the user.
   /// - description: The description of the user.
   Map<String, dynamic> toJson() {
     return {
@@ -62,7 +58,6 @@ class User {
       'password': password,
       'email': email,
       'urlImage': urlImage,
-      'createdFruits': createdFruits,
       'description': description,
     };
   }
@@ -70,6 +65,6 @@ class User {
   /// Become [User] to JSON string.
   @override
   String toString() {
-    return 'User{name: $name, lastName: $lastName, userName: $userName, password: $password, email: $email, urlImage: $urlImage, createdFruits: $createdFruits, description: $description}';
+    return 'User{name: $name, lastName: $lastName, userName: $userName, password: $password, email: $email, urlImage: $urlImage, description: $description}';
   }
 }

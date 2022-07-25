@@ -39,7 +39,6 @@ class UserController extends GetxController {
         'email': email,
         'urlImage': urlImage,
         'description': description,
-        'createdFruits': 0
       });
     } catch (e) {
       return Future.error(e);
@@ -73,7 +72,6 @@ class UserController extends GetxController {
     email,
     urlImage,
     description,
-    createdFruits,
   }) async {
     await _storageUser.update(userName, {
       'name': name,
@@ -83,7 +81,6 @@ class UserController extends GetxController {
       'email': email,
       'urlImage': urlImage,
       'description': description,
-      'createdFruits': createdFruits
     });
     currentUser.value = User(
       name: name,
@@ -93,7 +90,6 @@ class UserController extends GetxController {
       email: email,
       urlImage: urlImage,
       description: description,
-      createdFruits: createdFruits,
     );
   }
 }

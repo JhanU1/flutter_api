@@ -44,7 +44,7 @@ class PresentationPage extends StatelessWidget {
                       WidgetButton(
                           text: "Registrate",
                           onPressed: () {
-                            Get.to(() => const SignUpPage());
+                            Get.to(() => SignUpPage());
                           },
                           typeMain: false),
                       WidgetButton(

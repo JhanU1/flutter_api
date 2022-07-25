@@ -1,5 +1,3 @@
-
-
 import '../../data/models/fruit_model.dart';
 import '../../services/storage.dart';
 

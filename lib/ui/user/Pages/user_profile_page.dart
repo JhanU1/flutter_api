@@ -10,7 +10,12 @@ class UserProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: UserProfileWidget(),
+      body: ListView(
+              controller: ScrollController(),
+        children: [
+          UserProfileWidget(),
+        ],
+      ),
     );
   }
 }

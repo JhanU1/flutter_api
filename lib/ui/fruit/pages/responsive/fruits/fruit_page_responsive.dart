@@ -10,7 +10,7 @@ class ResponsiveFruitPage extends GetResponsiveView<ResponsiveController> {
 
   @override
   Widget builder() {
-    controller.isMobile.value = screen.isPhone;
+    controller.isMobile = screen.isPhone;
     return screen.isPhone ? FruitPagePhone() : FruitPageTablet();
   }
 }

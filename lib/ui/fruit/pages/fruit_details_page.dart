@@ -17,7 +17,13 @@ class FruitDetailsPage extends StatelessWidget {
         body: Column(
           children: [
             Text("Fruit Details", style: theme.textTheme.headline1),
-            Expanded(child: FruitDetailsWidget()),
+            Expanded(
+                child: ListView(
+              controller: ScrollController(),
+              children: [
+                FruitDetailsWidget(),
+              ],
+            )),
           ],
         ));
   }

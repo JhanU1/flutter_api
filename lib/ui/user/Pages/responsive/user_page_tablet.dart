@@ -17,7 +17,12 @@ class UserProfileTablet extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: UserProfileWidget()),
+            Expanded(
+                child: ListView(
+              children: [
+                UserProfileWidget(),
+              ],
+            )),
             Expanded(child: UserEditWidget())
           ],
         ),

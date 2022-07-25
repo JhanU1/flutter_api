@@ -23,6 +23,7 @@ class FruitCreateWidget extends StatelessWidget {
           const SizedBox(height: 30),
           Expanded(
             child: ListView(
+              controller: ScrollController(),
               scrollDirection: Axis.vertical,
               children: [
                 CustomFruitForm(),

@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../../../data/models/fruit_model.dart';
 import '../../../../../domain/controllers/fruit_controller.dart';
+import '../../../../../domain/controllers/responsive_controller.dart';
 import '../../../../widgets/custom_snackbar.dart';
 import '../../../widgets/custom_fruit_list_tile.dart';
 import '../../../widgets/fruit_create.dart';
@@ -13,9 +14,12 @@ import '../../../widgets/fruit_create.dart';
 class FruitUserPageTablet extends StatelessWidget {
   FruitUserPageTablet({Key? key}) : super(key: key);
   final FruitController fruitController = Get.find();
-
+  final ResponsiveController responsiveController = Get.find();
   @override
   Widget build(BuildContext context) {
+    final theme = responsiveController.getThemeByDevice();
+    final UserController userController = Get.find();
+    final userName = userController.user!.userName;
     return Scaffold(
       body: Row(
         children: [
@@ -24,11 +28,11 @@ class FruitUserPageTablet extends StatelessWidget {
               if (controller.isLoading.value) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                final UserController userController = Get.find();
-                final fruits = controller.fruits.where((fruit) =>
-                    fruit.createdBy == userController.user!.userName);
+                final fruits = controller.fruits
+                    .where((fruit) => fruit.createdBy == userName);
                 return Expanded(
                     child: ListView.separated(
+                  controller: ScrollController(),
                   separatorBuilder: (context, index) => const Divider(),
                   scrollDirection: Axis.vertical,
                   itemCount: controller.fruits.length,
@@ -68,7 +72,13 @@ class FruitUserPageTablet extends StatelessWidget {
           ),
           GetX<FruitController>(builder: (controller) {
             if (controller.indexFruitUserPage.value == 0) {
-              return Expanded(child: FruitDetailsWidget());
+              return Expanded(
+                  child: ListView(
+                controller: ScrollController(),
+                children: [
+                  FruitDetailsWidget(),
+                ],
+              ));
             } else if (controller.indexFruitUserPage.value == 1) {
               return Expanded(child: FruitEditWidget());
             } else {
@@ -78,6 +88,7 @@ class FruitUserPageTablet extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: theme.primaryColor,
         heroTag: "createFruit${DateTime.now()}",
         onPressed: () {
           fruitController.indexFruitUserPage.value = 2;

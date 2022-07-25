@@ -17,6 +17,8 @@ class FruitUserPagePhone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = responsiveController.getThemeByDevice();
+    final UserController userController = Get.find();
+    final userName = userController.user!.userName;
     return Scaffold(
       body: Column(
         children: [
@@ -25,11 +27,11 @@ class FruitUserPagePhone extends StatelessWidget {
               if (controller.isLoading.value) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                final UserController userController = Get.find();
-                final fruits = controller.fruits.where((fruit) =>
-                    fruit.createdBy == userController.user!.userName);
+                final fruits = controller.fruits
+                    .where((fruit) => fruit.createdBy == userName);
                 return Expanded(
                     child: ListView.separated(
+                  controller: ScrollController(),
                   separatorBuilder: (context, index) => const Divider(),
                   scrollDirection: Axis.vertical,
                   itemCount: fruits.length,

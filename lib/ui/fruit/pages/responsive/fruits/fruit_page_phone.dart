@@ -13,12 +13,14 @@ import '../../fruit_edit_page.dart';
 class FruitPagePhone extends StatelessWidget {
   FruitPagePhone({Key? key}) : super(key: key);
   final ResponsiveController responsiveController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     final theme = responsiveController.getThemeByDevice();
     return Scaffold(
       body: Column(
         children: [
+          // FutureBuilder(builder: ),
           GetX<FruitController>(
             builder: (controller) {
               if (controller.isLoading.value) {
@@ -26,6 +28,7 @@ class FruitPagePhone extends StatelessWidget {
               } else {
                 return Expanded(
                     child: ListView.separated(
+                  controller: ScrollController(),
                   separatorBuilder: (context, index) => const Divider(),
                   scrollDirection: Axis.vertical,
                   itemCount: controller.fruits.length,
