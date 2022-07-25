@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/ui/user/Pages/responsive/user_page_tablet.dart';
+import 'package:flutterapi/ui/user/Pages/responsive/user_page_tablet.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/controllers/responsive_controller.dart';

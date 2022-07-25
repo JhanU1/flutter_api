@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/domain/controllers/responsive_controller.dart';
-import 'package:flutter_api/ui/widgets/custom_app_bar.dart';
+import 'package:flutterapi/domain/controllers/responsive_controller.dart';
+import 'package:flutterapi/ui/widgets/custom_app_bar.dart';
 import 'package:get/get.dart';
 
 import '../widgets/fruit_details.dart';

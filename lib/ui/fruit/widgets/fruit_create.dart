@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/ui/fruit/widgets/custom_fruit_form.dart';
+import 'package:flutterapi/ui/fruit/widgets/custom_fruit_form.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/controllers/responsive_controller.dart';

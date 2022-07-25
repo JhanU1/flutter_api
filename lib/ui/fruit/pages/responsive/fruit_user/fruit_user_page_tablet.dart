@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/domain/controllers/user_controller.dart';
-import 'package:flutter_api/ui/fruit/widgets/fruit_details.dart';
-import 'package:flutter_api/ui/fruit/widgets/fruit_edit.dart';
+import 'package:flutterapi/domain/controllers/user_controller.dart';
+import 'package:flutterapi/ui/fruit/widgets/fruit_details.dart';
+import 'package:flutterapi/ui/fruit/widgets/fruit_edit.dart';
 import 'package:get/get.dart';
 
 import '../../../../../data/models/fruit_model.dart';

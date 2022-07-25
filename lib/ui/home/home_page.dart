@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/domain/controllers/responsive_controller.dart';
+import 'package:flutterapi/domain/controllers/responsive_controller.dart';
 
-import 'package:flutter_api/ui/fruit/pages/responsive/fruits/fruit_page_responsive.dart';
+import 'package:flutterapi/ui/fruit/pages/responsive/fruits/fruit_page_responsive.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/controllers/user_controller.dart';

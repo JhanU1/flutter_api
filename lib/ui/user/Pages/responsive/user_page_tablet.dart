@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_api/ui/user/widgets/user_edit.dart';
-import 'package:flutter_api/ui/user/widgets/user_profile.dart';
+import 'package:flutterapi/ui/user/widgets/user_edit.dart';
+import 'package:flutterapi/ui/user/widgets/user_profile.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/controllers/user_controller.dart';

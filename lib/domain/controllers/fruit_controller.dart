@@ -1,4 +1,4 @@
-import 'package:flutter_api/domain/use_case/fruit_storage.dart';
+import 'package:flutterapi/domain/use_case/fruit_storage.dart';
 import 'package:get/get.dart';
 
 import '../../data/models/fruit_model.dart';

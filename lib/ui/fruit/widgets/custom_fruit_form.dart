@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/domain/controllers/responsive_controller.dart';
+import 'package:flutterapi/domain/controllers/responsive_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/models/fruit_model.dart';

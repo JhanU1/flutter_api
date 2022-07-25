@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_api/domain/controllers/fruit_controller.dart';
+import 'package:flutterapi/domain/controllers/fruit_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/controllers/responsive_controller.dart';

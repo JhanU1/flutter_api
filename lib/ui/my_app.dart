@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_api/domain/controllers/user_controller.dart';
-import 'package:flutter_api/ui/home/home_page.dart';
+import 'package:flutterapi/domain/controllers/user_controller.dart';
+import 'package:flutterapi/ui/home/home_page.dart';
 import 'package:get/get.dart';
 
 import 'home/presentation_page.dart';
