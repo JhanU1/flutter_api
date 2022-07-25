@@ -2,41 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:flutter_api/ui/user/Pages/login_page.dart';
 import 'package:get/get.dart';
 
+import '../../domain/controllers/responsive_controller.dart';
 import '../user/Pages/signup_page.dart';
 import '../widgets/custom_buttom.dart';
 
 class PresentationPage extends StatelessWidget {
-  const PresentationPage({Key? key}) : super(key: key);
-
+  /// Is a [StatelessWidget] that show presentation page.
+  ///
+  /// This widget is the initial page of the app.
+  PresentationPage({Key? key}) : super(key: key);
+  final ResponsiveController responsiveController = Get.find();
   @override
   Widget build(BuildContext context) {
+    final theme = responsiveController.getThemeByDevice();
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(20),
-        color: const Color.fromRGBO(244, 244, 244, 1),
+        color: theme.primaryColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Center(
                 child: Column(
-              children: const [
-                Icon(
+              children: [
+                const Icon(
                   Icons.grass,
                   size: 100,
-                  color: Colors.grey,
+                  color: Colors.teal,
                 ),
                 Text(
                   "Flutter API",
+                  style: theme.textTheme.headline1,
                 )
               ],
             )),
             Center(
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     "Join the community or login to continue",
-                    style: TextStyle(fontWeight: FontWeight.bold),
+                    style: theme.textTheme.headline3,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       home: GetX<UserController>(
         builder: (controller) {
           if (controller.user == null) {
-            return const PresentationPage();
+            return PresentationPage();
           } else {
             return HomePage();
           }

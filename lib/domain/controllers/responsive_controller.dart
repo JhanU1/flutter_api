@@ -13,7 +13,7 @@ class ResponsiveController extends GetxController {
   /// Returns a [ThemeData] object.
   /// If the device is mobile, it returns the [themeData] object with mobile constraints.
   /// If the device is not mobile, it returns the [themeData] object with tablet constraints.
-  getThemeByDevice() {
+  ThemeData getThemeByDevice() {
     const Color primaryColor = Color.fromARGB(255, 251, 207, 150);
     const Color secondaryColor = Color.fromARGB(255, 136, 135, 130);
     const Color thirdColor = Color.fromARGB(255, 155, 155, 155);

@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class WidgetButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-  final bool typeMain;
-  final Key keyButton;
-  final RxBool loading = RxBool(false);
-
+  /// Is a [StatelessWidget] that show a button.
+  ///
+  /// This widget use [ElevatedButton] to show a button.
+  ///
+  /// [text] is the text of the button.
+  /// [onPressed] is the function that will be executed when the button is pressed.
+  /// [typeMain] is a boolean that indicate if the button is main or not.
+  /// [keyButton] is the key of the button.
   WidgetButton(
       {required this.text,
       required this.onPressed,
@@ -15,6 +17,12 @@ class WidgetButton extends StatelessWidget {
       this.keyButton = const Key(""),
       Key? key})
       : super(key: key);
+
+  final String text;
+  final VoidCallback onPressed;
+  final bool typeMain;
+  final Key keyButton;
+  final RxBool loading = RxBool(false);
 
   @override
   Widget build(BuildContext context) {

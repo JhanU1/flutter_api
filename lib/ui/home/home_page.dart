@@ -11,6 +11,9 @@ import '../user/Pages/responsive/user_responsive_page.dart';
 import '../user/Pages/user_edit_page.dart';
 
 class HomePage extends StatelessWidget {
+  /// Is a [StatelessWidget] that show home page.
+  ///
+  /// This widget use [Scaffold] and responsives widgets to show home page.
   HomePage({Key? key}) : super(key: key);
   final UserController userController = Get.find();
   final selectedPage = 0.obs;

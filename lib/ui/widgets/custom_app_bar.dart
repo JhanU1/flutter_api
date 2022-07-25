@@ -5,6 +5,9 @@ class WidgetAppBarBack {
   final String? title;
   final List<Widget>? actions;
 
+  /// Buil a [AppBar] with a back button.
+  ///
+  /// This widget use [AppBar] and [BackButton] to show the back button.
   WidgetAppBarBack({this.title, this.actions});
 
   AppBar build(BuildContext context) {

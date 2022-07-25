@@ -47,8 +47,8 @@ class UserProfileWidget extends StatelessWidget {
                   const SizedBox(height: 10),
                   Text(userController.user!.description,
                       style: TextStyle(
-                        fontSize: theme.textTheme.subtitle1.fontSize,
-                        color: theme.textTheme.subtitle1.color,
+                        fontSize: theme.textTheme.subtitle1!.fontSize,
+                        color: theme.textTheme.subtitle1!.color,
                         overflow: TextOverflow.ellipsis,
                       )),
                   const SizedBox(height: 10),
