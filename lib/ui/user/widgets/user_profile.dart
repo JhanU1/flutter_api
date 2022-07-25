@@ -7,6 +7,10 @@ import '../../../domain/controllers/responsive_controller.dart';
 import '../../../domain/controllers/user_controller.dart';
 
 class UserProfileWidget extends StatelessWidget {
+  /// Is a [StatelessWidget] that show the user profile.
+  ///
+  /// This widget use an observable [User] to fill the details.
+  /// [user] is taken from the [UserController.user]
   UserProfileWidget({Key? key}) : super(key: key);
   final UserController userController = Get.find();
   final ResponsiveController responsiveController = Get.find();

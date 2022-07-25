@@ -6,6 +6,10 @@ import '../../../domain/controllers/user_controller.dart';
 import 'custom_user_form.dart';
 
 class UserEditWidget extends StatelessWidget {
+  /// Is a [StatelessWidget] that edit an user.
+  ///
+  /// This widget use an observable [User] to fill the fields.
+  /// [user] is taken from the [UserController.user]
   UserEditWidget({Key? key}) : super(key: key);
   final _controller = Get.find<UserController>();
   final ResponsiveController responsiveController = Get.find();

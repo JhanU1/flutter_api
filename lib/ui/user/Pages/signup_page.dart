@@ -6,6 +6,10 @@ import '../../../domain/controllers/responsive_controller.dart';
 import '../widgets/custom_user_form.dart';
 
 class SignUpPage extends StatelessWidget {
+  /// Is a [StatelessWidget] that sign up an user.
+  ///
+  /// this widget use [Scaffold] and [UserForm] to sign up an user.
+  /// [SignUpPage] constains all text fields to sign up an user.
   SignUpPage({Key? key}) : super(key: key);
   final ResponsiveController responsiveController = Get.find();
   @override

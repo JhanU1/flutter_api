@@ -12,6 +12,10 @@ import '../../home/home_page.dart';
 import '../../widgets/custom_snackbar.dart';
 
 class LoginPage extends StatelessWidget {
+  /// Is a [StatelessWidget] that login an user.
+  ///
+  /// this widget use [UserController] to login an user.
+  /// [LoginPage] constains all text fields to login an user.
   LoginPage({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   final _userNameController = TextEditingController();

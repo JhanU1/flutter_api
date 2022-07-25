@@ -21,7 +21,7 @@ class StorageUser {
         "name": "Johan",
         "lastName": "Hurtado",
         "userName": "Johanl",
-        "password": 123,
+        "password": "123",
         "email": "admin@admin.com",
         "urlImage":
             "https://img.freepik.com/vector-premium/perfil-hombre-dibujos-animados_18591-58482.jpg?w=2000",

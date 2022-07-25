@@ -8,6 +8,11 @@ import '../../widgets/custom_snackbar.dart';
 import '../../widgets/custom_text_field.dart';
 
 class UserForm extends StatelessWidget {
+  /// Is a basic form to create or edit an [User].
+  ///
+  /// It uses the [user] to fill the form.
+  /// It uses the [_controller] to create or edit an user.
+  /// [UserForm] constains all text fields to create or edit an user.
   UserForm({Key? key, this.user}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   final User? user;
@@ -21,6 +26,7 @@ class UserForm extends StatelessWidget {
   final _descriptionController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
+  /// Update text controllers with [user] data, just in case the user wants to edit an user.
   onInit() {
     if (user != null) {
       _nameController.text = user!.name;
@@ -33,6 +39,10 @@ class UserForm extends StatelessWidget {
     }
   }
 
+  /// Determine if the user wants to create or edit an [User].
+  ///
+  /// If [user] is null, it means the user wants to create an [User].
+  /// If [user] is not null, it means the user wants to edit an [User].
   handlerButton() async {
     if (user == null) {
       await _controller.register(
