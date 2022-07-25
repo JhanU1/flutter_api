@@ -56,27 +56,27 @@ class ResponsiveController extends GetxController {
       );
       final textTheme = themeData.textTheme.copyWith(
         headline1: const TextStyle(
-          fontSize: 30,
+          fontSize: 40,
           fontWeight: FontWeight.bold,
           color: Color.fromARGB(255, 87, 83, 83),
         ),
         headline2: const TextStyle(
-          fontSize: 20,
+          fontSize: 30,
           fontWeight: FontWeight.bold,
           color: Colors.teal,
         ),
         headline3: const TextStyle(
-          fontSize: 18,
+          fontSize: 25,
           fontWeight: FontWeight.bold,
           color: secondaryColor,
         ),
         subtitle1: const TextStyle(
-          fontSize: 16,
+          fontSize: 20,
           color: thirdColor,
         ),
         subtitle2: defaultTextStyle,
         bodyText1: const TextStyle(
-          fontSize: 18,
+          fontSize: 22,
           color: Color.fromARGB(255, 87, 83, 83),
         ),
       );
