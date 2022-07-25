@@ -5,9 +5,17 @@ class User {
   String password;
   String email;
   String urlImage;
-
   String description;
 
+  /// [User] is used to create a new user.
+  ///
+  /// [name] is the name of the user.
+  /// [lastName] is the last name of the user.
+  /// [userName] is the user name of the user.
+  /// [password] is the password of the user.
+  /// [email] is the email of the user.
+  /// [urlImage] is the url of the image of the user.
+  /// [description] is the description of the user.
   User({
     required this.name,
     required this.lastName,
