@@ -6,6 +6,20 @@ class Fruit {
   Map<String, dynamic> nutritions;
   String? createdBy;
 
+  /// Create a new fruit.
+  ///
+  /// The [id] is optional. If not provided, it will be generated.
+  /// The [createdBy] is optional and is the user name who created the fruit.
+  /// The [nutritions] is required and must be a map with the nutritions of the fruit.
+  /// The [nutritions] must have the following keys:
+  /// - calories
+  /// - protein
+  /// - fat
+  /// - carbohydrates
+  /// - sugar
+  /// The [name] is required and must be a string.
+  /// The [genus] is required and must be a string.
+  ///  The [family] is required and must be a string.
   Fruit(
       {required this.genus,
       required this.family,
