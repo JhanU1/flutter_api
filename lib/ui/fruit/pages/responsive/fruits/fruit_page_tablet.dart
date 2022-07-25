@@ -11,6 +11,9 @@ import '../../../widgets/custom_fruit_list_tile.dart';
 import '../../../widgets/fruit_create.dart';
 
 class FruitPageTablet extends StatelessWidget {
+  /// Is a [StatelessWidget] that show fruit page in tablet.
+  ///
+  /// This widget use [Scaffold] and [CustomFruitListTile] to show the list of fruits.
   FruitPageTablet({Key? key}) : super(key: key) {
     fruitController.getAllFruit();
   }

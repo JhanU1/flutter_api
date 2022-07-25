@@ -12,6 +12,9 @@ import '../../../widgets/custom_fruit_list_tile.dart';
 import '../../../widgets/fruit_create.dart';
 
 class FruitUserPageTablet extends StatelessWidget {
+  /// Is a [StatelessWidget] that show user fruit page in tablet.
+  ///
+  /// This widget use [Scaffold] and [CustomFruitListTile] to show the list of fruits.
   FruitUserPageTablet({Key? key}) : super(key: key);
   final FruitController fruitController = Get.find();
   final ResponsiveController responsiveController = Get.find();
@@ -76,11 +79,14 @@ class FruitUserPageTablet extends StatelessWidget {
                   child: ListView(
                 controller: ScrollController(),
                 children: [
-                  FruitDetailsWidget(),
+                  FruitDetailsWidget(fromPage: "fruit_user_page"),
                 ],
               ));
             } else if (controller.indexFruitUserPage.value == 1) {
-              return Expanded(child: FruitEditWidget());
+              return Expanded(
+                  child: FruitEditWidget(
+                fromPage: "fruit_user_page",
+              ));
             } else {
               return Expanded(child: FruitCreateWidget());
             }

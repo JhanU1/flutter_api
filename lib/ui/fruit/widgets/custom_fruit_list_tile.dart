@@ -8,13 +8,13 @@ import '../../../../data/models/fruit_model.dart';
 import '../../../domain/controllers/user_controller.dart';
 
 class CustomFruitListTile extends StatelessWidget {
-  final Rx<Fruit> fruitRx;
-  final FruitController fruitController = Get.find();
-  final UserController userController = Get.find();
-  final VoidCallback? onTap;
-  final VoidCallback? onEdit;
-  final VoidCallback? onDelete;
-
+  /// Is a basic list tile to show a fruit.
+  ///
+  /// It uses the [fruitRx] to fill the list tile.
+  /// [fruitRx] is a observable [Fruit].
+  /// [onTap] is a callback used to show fruit details.
+  /// [onEdit] is a callback used to edit fruit.
+  /// [onDelete] is a callback used to delete fruit.
   CustomFruitListTile({
     Key? key,
     required this.fruitRx,
@@ -22,6 +22,13 @@ class CustomFruitListTile extends StatelessWidget {
     this.onEdit,
     this.onDelete,
   }) : super(key: key);
+
+  final Rx<Fruit> fruitRx;
+  final FruitController fruitController = Get.find();
+  final UserController userController = Get.find();
+  final VoidCallback? onTap;
+  final VoidCallback? onEdit;
+  final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {

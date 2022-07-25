@@ -6,6 +6,9 @@ import 'package:get/get.dart';
 import '../widgets/fruit_details.dart';
 
 class FruitDetailsPage extends StatelessWidget {
+  /// Is a [StatelessWidget] that create or edit a fruit.
+  ///
+  /// This widget use [Scaffold] and [FruitDetailsWidget] to show the details of a fruit.
   FruitDetailsPage({Key? key}) : super(key: key);
   final ResponsiveController responsiveController = Get.find();
 
@@ -21,7 +24,7 @@ class FruitDetailsPage extends StatelessWidget {
                 child: ListView(
               controller: ScrollController(),
               children: [
-                FruitDetailsWidget(),
+                FruitDetailsWidget(fromPage: "fruit_user_page"),
               ],
             )),
           ],

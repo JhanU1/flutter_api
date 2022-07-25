@@ -10,6 +10,11 @@ import '../../widgets/custom_snackbar.dart';
 import '../../widgets/custom_text_field.dart';
 
 class CustomFruitForm extends StatelessWidget {
+  /// Is a basic form to create or edit a fruit.
+  ///
+  /// It uses the [fruitRx] to fill the form.
+  /// It uses the [_controller] to create or edit a fruit.
+  /// [CustomFruitForm] constains all text fields to create or edit a fruit.
   CustomFruitForm({
     Key? key,
     this.fruitRx,
@@ -27,6 +32,7 @@ class CustomFruitForm extends StatelessWidget {
   final _controller = Get.find<FruitController>();
   final ResponsiveController responsiveController = Get.find();
 
+  /// Update text controllers with [fruitRx] data, just in case the user wants to edit a fruit.
   onInit() {
     if (fruitRx != null) {
       _genusController.text = fruitRx!.value.genus;
@@ -42,6 +48,7 @@ class CustomFruitForm extends StatelessWidget {
     }
   }
 
+  /// Update [fruitRx] data with text controllers data, just in case the user wants to edit a fruit.
   updateModel() {
     fruitRx!.value = Fruit(
       genus: _genusController.text,
@@ -57,6 +64,7 @@ class CustomFruitForm extends StatelessWidget {
     );
   }
 
+  /// Clean all text controllers.
   cleanTextControllers() {
     _genusController.text = '';
     _familyController.text = '';
@@ -68,6 +76,10 @@ class CustomFruitForm extends StatelessWidget {
     _sugarController.text = '';
   }
 
+  /// Determine if the user wants to create or edit a fruit.
+  ///
+  /// If [fruitRx] is null, it means the user wants to create a fruit.
+  /// If [fruitRx] is not null, it means the user wants to edit a fruit.
   handlerButtom() async {
     if (fruitRx == null) {
       await _controller.addFruit(

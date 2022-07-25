@@ -7,13 +7,26 @@ import '../../../domain/controllers/responsive_controller.dart';
 
 // ignore: must_be_immutable
 class FruitDetailsWidget extends StatelessWidget {
-  FruitDetailsWidget({Key? key}) : super(key: key) {
+  /// Is a [StatelessWidget] that show the details of a fruit.
+  ///
+  /// This widget use an observable [Fruit] to fill the details.
+  /// [fromPage] is the page where the fruit is shown.
+  /// [fruit] is taken from the [FruitController] depending on [fromPage]
+  /// If [fromPage] is [fruit_user_page] the fruit is taken from [fruitController.selectedFruitUser]
+  /// If [fromPage] is [fruit_page] the fruit is taken from [fruitController.selectedFruit]
+  FruitDetailsWidget({Key? key, this.fromPage = "fruit_page"})
+      : super(key: key) {
     fruitController = Get.find();
-    fruit = fruitController.selectedFruit;
+    if (fromPage == "fruit_user_page") {
+      fruit = fruitController.selectedFruitUser;
+    } else {
+      fruit = fruitController.selectedFruit;
+    }
   }
   late FruitController fruitController;
   late Rx<Fruit> fruit;
   final ResponsiveController responsiveController = Get.find();
+  String fromPage;
   @override
   Widget build(BuildContext context) {
     final theme = responsiveController.getThemeByDevice();

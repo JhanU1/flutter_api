@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ResponsiveController extends GetxController {
+  /// [themeData] is a template [ThemeData] that is used to change the theme.
   final themeData = ThemeData.light();
+
+  /// [isMobile] is a [bool] that is used to check if the device is mobile.
   bool isMobile = true;
 
+  /// [getThemeByDevice] is a function that is used to get the theme by device.
+  ///
+  /// Returns a [ThemeData] object.
+  /// If the device is mobile, it returns the [themeData] object with mobile constraints.
+  /// If the device is not mobile, it returns the [themeData] object with tablet constraints.
   getThemeByDevice() {
     const Color primaryColor = Color.fromARGB(255, 251, 207, 150);
     const Color secondaryColor = Color.fromARGB(255, 136, 135, 130);

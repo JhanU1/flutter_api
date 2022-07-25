@@ -5,6 +5,10 @@ import 'package:get/get.dart';
 import '../../../domain/controllers/responsive_controller.dart';
 
 class FruitCreateWidget extends StatelessWidget {
+  /// Is a [StatelessWidget] that create or edit a fruit.
+  ///
+  /// This widget use [CustomFruitForm] to create or edit a fruit.
+  /// Also, this widget has a title
   FruitCreateWidget({Key? key}) : super(key: key);
   final ResponsiveController responsiveController = Get.find();
   @override

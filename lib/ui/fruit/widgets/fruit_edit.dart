@@ -8,12 +8,24 @@ import '../../../domain/controllers/responsive_controller.dart';
 
 // ignore: must_be_immutable
 class FruitEditWidget extends StatelessWidget {
-  FruitEditWidget({Key? key}) : super(key: key) {
+  /// Is a [StatelessWidget] that edit a fruit.
+  ///
+  /// This widget use an observable [Fruit] to fill the details.
+  /// [fromPage] is the page where the fruit is shown.
+  /// [fruit] is taken from the [FruitController] depending on [fromPage]
+  /// If [fromPage] is [fruit_user_page] the fruit is taken from [fruitController.selectedFruitUser]
+  /// If [fromPage] is [fruit_page] the fruit is taken from [fruitController.selectedFruit]
+  FruitEditWidget({Key? key, this.fromPage = "fruit_page"}) : super(key: key) {
     fruitController = Get.find();
-    _fruitRx = fruitController.selectedFruit;
+    if (fromPage == "fruit_user_page") {
+      _fruitRx = fruitController.selectedFruitUser;
+    } else {
+      _fruitRx = fruitController.selectedFruit;
+    }
   }
   late FruitController fruitController;
   late Rx<Fruit>? _fruitRx;
+  String fromPage;
   final ResponsiveController responsiveController = Get.find();
   @override
   Widget build(BuildContext context) {

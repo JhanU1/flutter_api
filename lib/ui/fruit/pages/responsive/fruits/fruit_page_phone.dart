@@ -11,6 +11,9 @@ import '../../fruit_details_page.dart';
 import '../../fruit_edit_page.dart';
 
 class FruitPagePhone extends StatelessWidget {
+  /// Is a [StatelessWidget] that show fruit page in phone.
+  ///
+  /// This widget use [Scaffold] and [CustomFruitListTile] to show the list of fruits.
   FruitPagePhone({Key? key}) : super(key: key);
   final ResponsiveController responsiveController = Get.find();
 
@@ -20,7 +23,6 @@ class FruitPagePhone extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // FutureBuilder(builder: ),
           GetX<FruitController>(
             builder: (controller) {
               if (controller.isLoading.value) {
