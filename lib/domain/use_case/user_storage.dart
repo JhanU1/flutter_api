@@ -12,9 +12,22 @@ class StorageUser {
 
   /// Ensures user storage exists
   init() async {
+    // await _storage.delete("users");
     final users = await _storage.read('users');
     if (users == null) {
-      await _storage.save('users', []);
+      final user = <String, dynamic>{
+        "name": "Johan",
+        "lastName": "Hurtado",
+        "userName": "Johanl",
+        "password": 123,
+        "email": "admin@admin.com",
+        "urlImage":
+            "https://img.freepik.com/vector-premium/perfil-hombre-dibujos-animados_18591-58482.jpg?w=2000",
+        "description": "Software developer",
+        "createdFruits": 0
+      };
+
+      await _storage.save('users', [user]);
     }
   }
 
@@ -47,10 +60,10 @@ class StorageUser {
   /// Ensures that the user is not already registered
   /// Saves the user [data] in the storage using the [userName] as key.
   Future<void> create(String userName, Map<String, dynamic> data) async {
-    final users = await _storage.read("users");
+    List<Map<String, dynamic>> users = await _storage.read("users");
     final user = users.firstWhere((user) => user['userName'] == userName,
-        orElse: () => null);
-    if (user == null) {
+        orElse: () => <String, dynamic>{});
+    if (user.isEmpty) {
       users.add(data);
       await _storage.save("users", users);
     } else {
@@ -65,8 +78,8 @@ class StorageUser {
   Future<Map<String, dynamic>> read(String userName) async {
     final users = await _storage.read("users");
     final user = users.firstWhere((user) => user['userName'] == userName,
-        orElse: () => null);
-    if (user != null) {
+        orElse: () => <String, dynamic>{});
+    if (user.isNotEmpty) {
       return user;
     } else {
       return Future.error('User does not exists');
@@ -80,8 +93,8 @@ class StorageUser {
   Future<void> update(String userName, Map<String, dynamic> data) async {
     final users = await _storage.read("users");
     final user = users.firstWhere((user) => user['userName'] == userName,
-        orElse: () => null);
-    if (user != null) {
+        orElse: () => <String, dynamic>{});
+    if (user.isNotEmpty) {
       for (final key in data.keys) {
         user[key] = data[key] ?? user[key];
       }
