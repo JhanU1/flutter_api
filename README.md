@@ -1,16 +1,49 @@
-# flutter_api
+# Flutter API
 
-A new Flutter project.
+Flutter Api is a responsive app that used a login by a credentials and  a fruit API.
 
-## Getting Started
+This app use [Getx](https://pub.dev/packages/get) as manager, specific components:
 
-This project is a starting point for a Flutter application.
+ - GetxController
+ - GetxService
+ - Rx
+ - GetResponsiveView
+ - GetConnect
+ - GetStorage
 
-A few resources to get you started if this is your first Flutter project:
+## Fruit API
+Link API documentation : https://www.fruityvice.com/
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Response example:
+    
+    response = [
+    {
+    
+    "genus": "Malus",
+    "name": "Apple",
+    "id": 6,
+    "family": "Rosaceae",
+    "order": "Rosales",
+    "nutritions": {
+          "carbohydrates": 11.4,
+          "protein": 0.3,
+          "fat": 0.4,
+          "calories": 52,
+          "sugar": 10.3
+        }
+      },
+      {
+        "genus": "Prunus",
+        "name": "Apricot",
+        "id": 35,
+        "family": "Rosaceae",
+        "order": "Rosales",
+        "nutritions": {
+          "carbohydrates": 3.9,
+          "protein": 0.5,
+          "fat": 0.1,
+          "calories": 15,
+          "sugar": 3.2
+        }
+      },
+    ]
