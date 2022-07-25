@@ -10,6 +10,13 @@ This app use [Getx](https://pub.dev/packages/get) as manager, specific component
  - GetResponsiveView
  - GetConnect
  - GetStorage
+ 
+### Burned User
+
+username: Johanl
+
+password: 123
+
 
 ## Fruit API
 Link API documentation : https://www.fruityvice.com/
