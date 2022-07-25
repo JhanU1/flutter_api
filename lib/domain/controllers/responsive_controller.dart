@@ -3,64 +3,52 @@ import 'package:get/get.dart';
 
 class ResponsiveController extends GetxController {
   final themeData = ThemeData.light();
+  final RxBool isMobile = RxBool(true);
 
-  selectThemeByDevice(isPhone) {
-    if (isPhone) {
-      const Color primaryColor = Color.fromARGB(255, 244, 204, 144);
-      const Color secondaryColor = Color.fromARGB(255, 92, 91, 91);
-      const Color thirdColor = Color.fromARGB(255, 151, 149, 149);
+  getThemeByDevice() {
+    if (isMobile.value) {
+      const Color primaryColor = Color.fromARGB(255, 251, 207, 150);
+      const Color secondaryColor = Color.fromARGB(255, 136, 135, 130);
+      const Color thirdColor = Color.fromARGB(255, 155, 155, 155);
       const TextStyle defaultTextStyle = TextStyle(
         color: Colors.black,
         fontSize: 16,
       );
-
       final textTheme = themeData.textTheme.copyWith(
         headline1: const TextStyle(
           fontSize: 30,
           fontWeight: FontWeight.bold,
-          color: primaryColor,
+          color: Color.fromARGB(255, 87, 83, 83),
         ),
         headline2: const TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          color: primaryColor,
+          color: Colors.teal,
         ),
         headline3: const TextStyle(
-          fontSize: 15,
+          fontSize: 18,
           fontWeight: FontWeight.bold,
           color: secondaryColor,
-        ),
-        headline4: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: primaryColor,
-        ),
-        headline5: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-          color: secondaryColor,
-        ),
-        headline6: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          color: thirdColor,
         ),
         subtitle1: const TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
+          fontSize: 16,
           color: thirdColor,
         ),
         subtitle2: defaultTextStyle,
-        bodyText1: defaultTextStyle,
-        bodyText2: defaultTextStyle,
-        caption: defaultTextStyle,
-        button: defaultTextStyle,
-        overline: defaultTextStyle,
+        bodyText1: const TextStyle(
+          fontSize: 18,
+          color: Color.fromARGB(255, 87, 83, 83),
+        ),
       );
       return themeData.copyWith(
-        textTheme: textTheme,
-        primaryTextTheme: textTheme,
-      );
-    }
+          textTheme: textTheme,
+          primaryTextTheme: textTheme,
+          primaryColor: primaryColor,
+          primaryColorLight: primaryColor,
+          appBarTheme: const AppBarTheme(
+            color: primaryColor,
+            iconTheme: IconThemeData(color: Color.fromARGB(255, 251, 207, 150)),
+          ));
+    } else {}
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_api/domain/controllers/responsive_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/models/fruit_model.dart';
@@ -24,6 +25,7 @@ class CustomFruitForm extends StatelessWidget {
   final _sugarController = TextEditingController();
   final Rx<Fruit>? fruitRx;
   final _controller = Get.find<FruitController>();
+  final ResponsiveController responsiveController = Get.find();
 
   onInit() {
     if (fruitRx != null) {
@@ -102,11 +104,21 @@ class CustomFruitForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     onInit();
+    final theme = responsiveController.getThemeByDevice();
     return Form(
       key: _formKey,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        const Text("Basic Information"),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Basic Information",
+              style: theme.textTheme.headline2,
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
         WidgetTextField(
           label: "Name",
           controller: _nameController,
@@ -136,7 +148,15 @@ class CustomFruitForm extends StatelessWidget {
               return null;
             }),
         const Divider(),
-        const Text("Nutritions:"),
+        Row(
+          children: [
+            Text(
+              "Nutritions:",
+              style: theme.textTheme.headline2,
+            ),
+          ],
+        ),
+        const SizedBox(height: 10),
         WidgetTextField(
             label: "Carbohydrates",
             controller: _carbohydratesController,
@@ -202,23 +222,29 @@ class CustomFruitForm extends StatelessWidget {
               }
               return null;
             }),
-        WidgetButton(
-            text: "Save",
-            onPressed: () async {
-              final form = _formKey.currentState;
-              form!.save();
-              if (form.validate()) {
-                try {
-                  await handlerButtom();
-                } catch (e) {
-                  showCustomSnackbar(
-                      title: "Error",
-                      message: e.toString(),
-                      type: CustomSnackbarType.error);
-                }
-              }
-            },
-            typeMain: true),
+        Row(
+          children: [
+            Expanded(
+              child: WidgetButton(
+                  text: "Save",
+                  onPressed: () async {
+                    final form = _formKey.currentState;
+                    form!.save();
+                    if (form.validate()) {
+                      try {
+                        await handlerButtom();
+                      } catch (e) {
+                        showCustomSnackbar(
+                            title: "Error",
+                            message: e.toString(),
+                            type: CustomSnackbarType.error);
+                      }
+                    }
+                  },
+                  typeMain: true),
+            ),
+          ],
+        ),
       ]),
     );
   }

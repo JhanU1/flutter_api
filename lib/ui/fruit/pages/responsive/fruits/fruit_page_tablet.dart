@@ -25,7 +25,8 @@ class FruitPageTablet extends StatelessWidget {
                     child: Center(child: CircularProgressIndicator()));
               } else {
                 return Expanded(
-                    child: ListView.builder(
+                    child: ListView.separated(
+                  separatorBuilder: (context, index) => const Divider(),
                   scrollDirection: Axis.vertical,
                   itemCount: controller.fruits.length,
                   itemBuilder: (context, index) {
@@ -68,7 +69,7 @@ class FruitPageTablet extends StatelessWidget {
             } else if (controller.indexFruitPage.value == 1) {
               return Expanded(child: FruitEditWidget());
             } else {
-              return const Expanded(child: FruitCreateWidget());
+              return Expanded(child: FruitCreateWidget());
             }
           })
         ],

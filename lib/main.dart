@@ -19,6 +19,6 @@ void main() async {
   Get.put(StorageUser());
   Get.put(UserController());
   Get.put(FruitController());
-  Get.lazyPut(() => ResponsiveController());
+  Get.put(ResponsiveController());
   runApp(const MyApp());
 }

@@ -9,6 +9,8 @@ class ResponsiveFruitPage extends GetResponsiveView<ResponsiveController> {
   ResponsiveFruitPage({Key? key}) : super(key: key);
 
   @override
-  Widget builder() =>
-      screen.isPhone ? const FruitPagePhone() : FruitPageTablet();
+  Widget builder() {
+    controller.isMobile.value = screen.isPhone;
+    return screen.isPhone ? FruitPagePhone() : FruitPageTablet();
+  }
 }

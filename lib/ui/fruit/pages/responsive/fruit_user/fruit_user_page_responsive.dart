@@ -11,5 +11,5 @@ class ResponsiveFruitUserPage extends GetResponsiveView<ResponsiveController> {
 
   @override
   Widget builder() =>
-      screen.isPhone ? const FruitUserPagePhone() : FruitUserPageTablet();
+      screen.isPhone ? FruitUserPagePhone() : FruitUserPageTablet();
 }

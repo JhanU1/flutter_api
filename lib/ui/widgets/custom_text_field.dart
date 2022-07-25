@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../domain/controllers/responsive_controller.dart';
 
 class WidgetTextField extends StatelessWidget {
   final String label;
@@ -9,8 +12,9 @@ class WidgetTextField extends StatelessWidget {
   final Key keyText;
   final int maxLine;
   final bool active;
+  final ResponsiveController responsiveController = Get.find();
 
-  const WidgetTextField(
+  WidgetTextField(
       {required this.label,
       required this.controller,
       this.validator,
@@ -24,6 +28,7 @@ class WidgetTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = responsiveController.getThemeByDevice();
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormField(
@@ -37,7 +42,7 @@ class WidgetTextField extends StatelessWidget {
         decoration: InputDecoration(
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(30)),
           labelText: label,
-          labelStyle: const TextStyle(fontWeight: FontWeight.bold),
+          labelStyle: theme.textTheme.headline3,
         ),
         controller: controller,
         validator: validator,

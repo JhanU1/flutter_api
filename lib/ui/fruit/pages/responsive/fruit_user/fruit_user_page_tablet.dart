@@ -28,7 +28,8 @@ class FruitUserPageTablet extends StatelessWidget {
                 final fruits = controller.fruits.where((fruit) =>
                     fruit.createdBy == userController.user!.userName);
                 return Expanded(
-                    child: ListView.builder(
+                    child: ListView.separated(
+                  separatorBuilder: (context, index) => const Divider(),
                   scrollDirection: Axis.vertical,
                   itemCount: controller.fruits.length,
                   itemBuilder: (context, index) {
@@ -71,7 +72,7 @@ class FruitUserPageTablet extends StatelessWidget {
             } else if (controller.indexFruitUserPage.value == 1) {
               return Expanded(child: FruitEditWidget());
             } else {
-              return const Expanded(child: FruitCreateWidget());
+              return Expanded(child: FruitCreateWidget());
             }
           })
         ],

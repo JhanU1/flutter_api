@@ -9,7 +9,6 @@ class FruitCreatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: WidgetAppBarBack().build(context),
-        body: const FruitCreateWidget());
+        appBar: WidgetAppBarBack().build(context), body: FruitCreateWidget());
   }
 }

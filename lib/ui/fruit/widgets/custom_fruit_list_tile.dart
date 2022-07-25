@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api/domain/controllers/fruit_controller.dart';
+import 'package:flutter_api/domain/controllers/responsive_controller.dart';
 
 import 'package:get/get.dart';
 
@@ -24,16 +25,13 @@ class CustomFruitListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ResponsiveController responsiveController = Get.find();
+    final theme = responsiveController.getThemeByDevice();
     return fruitRx.value.createdBy == userController.user!.userName
         ? ListTile(
-            title: Text(fruitRx.value.name),
-            subtitle: Column(
-              children: [
-                Text(fruitRx.value.genus),
-                Text(fruitRx.value.family),
-              ],
-            ),
-            isThreeLine: true,
+            title: Text(fruitRx.value.name, style: theme.textTheme.headline3),
+            subtitle: Text("Family: ${fruitRx.value.family}",
+                style: theme.textTheme.subtitle1),
             trailing: PopupMenuButton<Widget>(
               itemBuilder: (context) {
                 return [
@@ -65,14 +63,9 @@ class CustomFruitListTile extends StatelessWidget {
             onTap: onTap,
           )
         : ListTile(
-            title: Text(fruitRx.value.name),
-            subtitle: Column(
-              children: [
-                Text(fruitRx.value.genus),
-                Text(fruitRx.value.family),
-              ],
-            ),
-            isThreeLine: true,
+            title: Text(fruitRx.value.name, style: theme.textTheme.headline3),
+            subtitle: Text("Family: ${fruitRx.value.family}",
+                style: theme.textTheme.subtitle1),
             onTap: onTap,
           );
   }
