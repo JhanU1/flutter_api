@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_api/ui/fruit/pages/responsive/fruits/fruit_page_responsive.dart';
-import 'package:flutter_api/ui/user/Pages/user_profile.dart';
 import 'package:get/get.dart';
 
 import '../../../domain/controllers/user_controller.dart';
 
-import '../fruit/pages/responsive/fruit_user/fruit_page_responsive.dart';
+import '../fruit/pages/responsive/fruit_user/fruit_user_page_responsive.dart';
+import '../user/Pages/responsive/user_responsive_page.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
   final listPage = [
     ResponsiveFruitPage(),
     ResponsiveFruitUserPage(),
-    UserProfile(),
+    ResponsiveUserPage()
   ];
   @override
   Widget build(BuildContext context) {

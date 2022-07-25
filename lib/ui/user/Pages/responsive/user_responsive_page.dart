@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_api/ui/user/Pages/responsive/user_page_phone.dart';
 import 'package:flutter_api/ui/user/Pages/responsive/user_page_tablet.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/controllers/responsive_controller.dart';
+import '../user_profile_page.dart';
 
-class ResponsiveFruitPage extends GetResponsiveView<ResponsiveController> {
-  ResponsiveFruitPage({Key? key}) : super(key: key);
+class ResponsiveUserPage extends GetResponsiveView<ResponsiveController> {
+  ResponsiveUserPage({Key? key}) : super(key: key);
 
   @override
-  Widget builder() => screen.isPhone ? UserProfilePhone() : UserProfileTablet();
+  Widget builder() => screen.isPhone ? UserProfilePage() : UserProfileTablet();
 }

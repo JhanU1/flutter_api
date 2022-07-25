@@ -5,9 +5,9 @@ import '../../../../../data/models/fruit_model.dart';
 import '../../../../../domain/controllers/fruit_controller.dart';
 import '../../../../widgets/custom_snackbar.dart';
 import '../../../widgets/custom_fruit_list_tile.dart';
-import '../../fruit_create.dart';
-import '../../fruit_details.dart';
-import '../../fruit_edit.dart';
+import '../../fruit_create_page.dart';
+import '../../fruit_details_page.dart';
+import '../../fruit_edit_page.dart';
 
 class FruitPagePhone extends StatelessWidget {
   const FruitPagePhone({Key? key}) : super(key: key);
@@ -25,6 +25,7 @@ class FruitPagePhone extends StatelessWidget {
               } else {
                 return Expanded(
                     child: ListView.builder(
+                  scrollDirection: Axis.vertical,
                   itemCount: controller.fruits.length,
                   itemBuilder: (context, index) {
                     final fruit = controller.fruits.reversed.elementAt(index);
@@ -33,12 +34,12 @@ class FruitPagePhone extends StatelessWidget {
                       fruitRx: fruitRx,
                       onTap: () {
                         controller.selectedFruit = fruitRx;
-                        Get.to(() => FruitDetails());
+                        Get.to(() => const FruitDetailsPage());
                       },
                       onEdit: () {
                         controller.selectedFruit = fruitRx;
                         Future.delayed(const Duration(milliseconds: 500),
-                            () => Get.to(() => FruitEdit()));
+                            () => Get.to(() => const FruitEditPage()));
                       },
                       onDelete: () async {
                         try {
@@ -64,9 +65,9 @@ class FruitPagePhone extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        heroTag: "createFruit",
+        heroTag: "createFruit${DateTime.now()}",
         onPressed: () {
-          Get.to(() => const FruitCreate());
+          Get.to(() => const FruitCreatePage());
         },
         child: const Icon(Icons.add),
       ),

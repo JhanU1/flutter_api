@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_api/ui/user/Pages/user_edit_page.dart';
-import 'package:flutter_api/ui/user/Pages/user_profile.dart';
+import 'package:flutter_api/ui/user/widgets/user_edit.dart';
+import 'package:flutter_api/ui/user/widgets/user_profile.dart';
 import 'package:get/get.dart';
 
 import '../../../../domain/controllers/user_controller.dart';
@@ -14,11 +14,12 @@ class UserProfileTablet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Obx(
-          () => Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [UserProfile(), UserEditPage()],
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(child: UserProfileWidget()),
+            Expanded(child: UserEditWidget())
+          ],
         ),
       ),
     );

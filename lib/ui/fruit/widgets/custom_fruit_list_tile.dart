@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api/domain/controllers/fruit_controller.dart';
-import 'package:flutter_api/ui/fruit/pages/fruit_details.dart';
 
 import 'package:get/get.dart';
 
@@ -51,6 +50,7 @@ class CustomFruitListTile extends StatelessWidget {
                   ),
                   PopupMenuItem(
                     value: const Text('Delete'),
+                    onTap: onDelete,
                     child: Row(
                       children: const [
                         Icon(Icons.delete),
@@ -58,14 +58,11 @@ class CustomFruitListTile extends StatelessWidget {
                         Text("Delete")
                       ],
                     ),
-                    onTap: () async {},
                   ),
                 ];
               },
             ),
-            onTap: () {
-              Get.to(() => FruitDetails(), arguments: fruitRx.value);
-            },
+            onTap: onTap,
           )
         : ListTile(
             title: Text(fruitRx.value.name),
@@ -76,9 +73,7 @@ class CustomFruitListTile extends StatelessWidget {
               ],
             ),
             isThreeLine: true,
-            onTap: () {
-              Get.to(() => FruitDetails(), arguments: fruitRx.value);
-            },
+            onTap: onTap,
           );
   }
 }

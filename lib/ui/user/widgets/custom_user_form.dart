@@ -88,7 +88,7 @@ class UserForm extends StatelessWidget {
               return null;
             }),
         WidgetTextField(
-            active: user != null,
+            active: user == null,
             label: "User Name",
             controller: _userNameController,
             validator: (value) {

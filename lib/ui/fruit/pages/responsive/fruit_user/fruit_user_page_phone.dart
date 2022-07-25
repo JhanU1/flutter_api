@@ -6,9 +6,9 @@ import '../../../../../domain/controllers/fruit_controller.dart';
 import '../../../../../domain/controllers/user_controller.dart';
 import '../../../../widgets/custom_snackbar.dart';
 import '../../../widgets/custom_fruit_list_tile.dart';
-import '../../fruit_create.dart';
-import '../../fruit_details.dart';
-import '../../fruit_edit.dart';
+import '../../fruit_create_page.dart';
+import '../../fruit_details_page.dart';
+import '../../fruit_edit_page.dart';
 
 class FruitUserPagePhone extends StatelessWidget {
   const FruitUserPagePhone({Key? key}) : super(key: key);
@@ -29,6 +29,8 @@ class FruitUserPagePhone extends StatelessWidget {
                     fruit.createdBy == userController.user!.userName);
                 return Expanded(
                     child: ListView.builder(
+                  
+                  scrollDirection: Axis.vertical,
                   itemCount: fruits.length,
                   itemBuilder: (context, index) {
                     final fruit = fruits.elementAt(index);
@@ -37,12 +39,12 @@ class FruitUserPagePhone extends StatelessWidget {
                       fruitRx: fruitRx,
                       onTap: () {
                         controller.selectedFruitUser = fruitRx;
-                        Get.to(() => FruitDetails());
+                        Get.to(() => const FruitDetailsPage());
                       },
                       onEdit: () {
                         controller.selectedFruitUser = fruitRx;
                         Future.delayed(const Duration(milliseconds: 500),
-                            () => Get.to(() => FruitEdit()));
+                            () => Get.to(() => const FruitEditPage()));
                       },
                       onDelete: () async {
                         try {
@@ -68,9 +70,9 @@ class FruitUserPagePhone extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        heroTag: "createFruit",
+        heroTag: "createFruit${DateTime.now()}",
         onPressed: () {
-          Get.to(() => const FruitCreate());
+          Get.to(() => const FruitCreatePage());
         },
         child: const Icon(Icons.add),
       ),

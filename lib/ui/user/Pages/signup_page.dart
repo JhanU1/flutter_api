@@ -26,6 +26,7 @@ class SignUpPage extends StatelessWidget {
             const SizedBox(height: 20),
             Expanded(
               child: ListView(
+                scrollDirection: Axis.vertical,
                 children: [
                   UserForm(),
                 ],
