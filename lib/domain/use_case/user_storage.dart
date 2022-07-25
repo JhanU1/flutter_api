@@ -1,8 +1,8 @@
 import '../../services/storage.dart';
 
 class StorageUser {
+  /// Initialize the storage service and ensure that user storage exist.
   StorageUser() {
-    /// Initialize the storage
     _storage = Storage.to;
     init();
   }
@@ -11,8 +11,10 @@ class StorageUser {
   late Storage _storage;
 
   /// Ensures user storage exists
+  ///
+  /// If the user storage does not exist, it will be created
+  /// with a burned Map that contains the [User] attributes.
   init() async {
-    // await _storage.delete("users");
     final users = await _storage.read('users');
     if (users == null) {
       final user = <String, dynamic>{
@@ -26,14 +28,13 @@ class StorageUser {
         "description": "Software developer",
         "createdFruits": 0
       };
-
       await _storage.save('users', [user]);
     }
   }
 
   /// Read logged user from storage
   ///
-  /// Returns a JSON object with the attributes of the user.
+  /// Returns a Map with the attributes of the user.
   Future<Map<String, dynamic>> readUserLogged() async {
     final userName = await _storage.read('userLogged');
     final user = await read(userName);
@@ -73,7 +74,7 @@ class StorageUser {
 
   /// Read a user from storage
   ///
-  /// Returns a JSON object with the attributes of the user.
+  /// Returns a Map with the attributes of the user.
   /// Uses the [userName] as key.
   Future<Map<String, dynamic>> read(String userName) async {
     final users = await _storage.read("users");

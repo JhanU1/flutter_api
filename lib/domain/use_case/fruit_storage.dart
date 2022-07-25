@@ -2,16 +2,26 @@ import '../../data/models/fruit_model.dart';
 import '../../services/storage.dart';
 
 class StorageFruit {
+  /// Initialize the storage service and ensure that fruit storage exist.
   StorageFruit() {
     _storage = Storage.to;
     init();
   }
 
+  /// Storage service instance
+  ///
+  /// [_storage] is a [Storage] object that is used to read and save data.
   late Storage _storage;
+
+  /// [_fruits] is a list of maps with the attributes of the fruits.
+  ///
+  /// [_fruits] is used to save, read and delete fruits.
   late List<Map<String, dynamic>?>? _fruits;
 
+  /// Ensures fruit storage exists
+  ///
+  /// If the fruit storage does not exist, it will be created with list empty.
   init() async {
-    //await _storage.delete('fruits');
     final fruits = await _storage.read('fruits');
     if (fruits == null) {
       await _storage.save('fruits', []);
@@ -23,6 +33,9 @@ class StorageFruit {
     }
   }
 
+  /// Read a fruit from storage
+  ///
+  /// [readByName] read a fruit from storage with name equal to [fruitName].
   Future<Map<String, dynamic>?> readByName(String fruitName) async {
     final fruit = _fruits!
         .firstWhere((fruit) => fruit?['name'] == fruitName, orElse: () => {});
@@ -33,6 +46,10 @@ class StorageFruit {
     }
   }
 
+  /// create a new fruit in storage
+  ///
+  /// Ensures that the fruit is not already registered
+  /// Saves the [fruit] data in the storage using the [fruitName] as key.
   Future<int> create(String fruitName, Fruit fruit) async {
     final storedFruit = await readByName(fruitName).catchError((e) => null);
     if (storedFruit == null) {
@@ -46,6 +63,10 @@ class StorageFruit {
     }
   }
 
+  /// Update a fruit in storage
+  ///
+  /// Ensures that the fruit is registered
+  /// Updates the [fruit] data in the storage using the [fruitName] as key.
   Future<void> update(String fruitName, Fruit fruit) async {
     final storedFruit = await readByName(fruitName).catchError((e) => null);
     if (storedFruit != null) {
@@ -69,6 +90,10 @@ class StorageFruit {
     }
   }
 
+  /// Delete a fruit from storage
+  ///
+  /// Ensures that the fruit is registered
+  /// Deletes the [fruit] data in the storage using the [fruitName] as key.
   Future<void> delete(String fruitName) async {
     final fruit = await readByName(fruitName);
     if (fruit != null) {
@@ -77,6 +102,7 @@ class StorageFruit {
     }
   }
 
+  /// Read all fruits from storage
   List<Map<String, dynamic>?>? read() {
     return _fruits;
   }
