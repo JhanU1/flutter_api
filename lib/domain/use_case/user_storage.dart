@@ -61,7 +61,7 @@ class StorageUser {
   /// Ensures that the user is not already registered
   /// Saves the user [data] in the storage using the [userName] as key.
   Future<void> create(String userName, Map<String, dynamic> data) async {
-    List<Map<String, dynamic>> users = await _storage.read("users");
+    final users = await _storage.read("users");
     final user = users.firstWhere((user) => user['userName'] == userName,
         orElse: () => <String, dynamic>{});
     if (user.isEmpty) {
