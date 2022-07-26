@@ -44,13 +44,17 @@ class FruitUserPagePhone extends StatelessWidget {
                     return CustomFruitListTile(
                       fruitRx: fruitRx,
                       onTap: () {
-                        controller.selectedFruitUser = fruitRx;
-                        Get.to(() => FruitDetailsPage());
+                        controller.selectedFruitUser.value = fruit;
+                        Get.to(() => FruitDetailsPage(
+                              fromPage: "fruit_user_page",
+                            ));
                       },
                       onEdit: () {
-                        controller.selectedFruitUser = fruitRx;
-                        Future.delayed(const Duration(milliseconds: 500),
-                            () => Get.to(() => const FruitEditPage()));
+                        controller.selectedFruitUser.value = fruit;
+                        Future.delayed(
+                            const Duration(milliseconds: 500),
+                            () => Get.to(() =>
+                                FruitEditPage(fromPage: "fruit_user_page")));
                       },
                       onDelete: () async {
                         try {

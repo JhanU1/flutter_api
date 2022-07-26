@@ -17,11 +17,6 @@ class FruitDetailsWidget extends StatelessWidget {
   FruitDetailsWidget({Key? key, this.fromPage = "fruit_page"})
       : super(key: key) {
     fruitController = Get.find();
-    if (fromPage == "fruit_user_page") {
-      fruit = fruitController.selectedFruitUser;
-    } else {
-      fruit = fruitController.selectedFruit;
-    }
   }
   late FruitController fruitController;
   late Rx<Fruit> fruit;
@@ -32,6 +27,11 @@ class FruitDetailsWidget extends StatelessWidget {
     final theme = responsiveController.getThemeByDevice();
     final nutritionsStyle = theme.textTheme.bodyText1;
     return Obx(() {
+      if (fromPage == "fruit_user_page") {
+        fruit = fruitController.selectedFruitUser;
+      } else {
+        fruit = fruitController.selectedFruit;
+      }
       if (fruit.value.name.isNotEmpty) {
         return Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -9,9 +9,9 @@ class FruitDetailsPage extends StatelessWidget {
   /// Is a [StatelessWidget] that create or edit a fruit.
   ///
   /// This widget use [Scaffold] and [FruitDetailsWidget] to show the details of a fruit.
-  FruitDetailsPage({Key? key}) : super(key: key);
+  FruitDetailsPage({Key? key, this.fromPage = "fruit_user"}) : super(key: key);
   final ResponsiveController responsiveController = Get.find();
-
+  String fromPage;
   @override
   Widget build(BuildContext context) {
     final theme = responsiveController.getThemeByDevice();
@@ -24,7 +24,7 @@ class FruitDetailsPage extends StatelessWidget {
                 child: ListView(
               controller: ScrollController(),
               children: [
-                FruitDetailsWidget(fromPage: "fruit_user_page"),
+                FruitDetailsWidget(fromPage: fromPage),
               ],
             )),
           ],

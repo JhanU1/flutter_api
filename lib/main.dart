@@ -12,7 +12,6 @@ import 'services/storage.dart';
 import 'ui/my_app.dart';
 
 void main() async {
-  print("Inicio la aaap");
   await GetStorage.init();
   Get.put(Storage());
   Get.put(ApiProvider());
